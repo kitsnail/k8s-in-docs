@@ -61,7 +61,12 @@
 - GPU Operator - NVIDIA GPU 管理
 
 ### [AI/ML 平台](./ai-ml/)
-- llm-d - 大模型推理平台
+- [llm-d](./ai-ml/llm-d/) - 分布式大模型推理平台
+- [LMCache](./ai-ml/lmcache/) - LLM 推理 KV Cache 加速层
+- [Inference Gateway](./ai-ml/inference-gateway/) - Gateway API 推理扩展
+- [llm-d-modelservice](./ai-ml/llm-d-modelservice/) - LLM 推理服务管理 Operator
+- [KV Cache Indexer](./ai-ml/llm-inference/kv-cache-indexer/) - KV-Cache 感知调度器
+- [Inference Scheduler](./ai-ml/llm-inference/llm-d-inference-scheduler/) - 插件化推理路由引擎
 
 ---
 
@@ -76,6 +81,16 @@ Prometheus + Grafana + VictoriaMetrics + Metrics Server
 llm-d + WVA + GPU Operator + JuiceFS + Prometheus
 
 **适用场景**: 大模型推理服务部署和成本优化
+
+### [服务网格方案](./stacks/service-mesh-stack.md)
+Istio + Cilium + cert-manager + Prometheus
+
+**适用场景**: 微服务治理、流量管理、安全通信
+
+### [存储方案对比](./stacks/storage-comparison.md)
+Ceph vs JuiceFS vs GPFS
+
+**适用场景**: 根据业务需求选择合适的存储方案
 
 ---
 
