@@ -30,21 +30,21 @@ Kubernetes Service 的 Round-robin 算法基于以下假设:
 **场景**: 8 个 vLLM Pod 服务 Llama-70B,使用 K8s Service Round-robin
 
 ```mermaid
-sequenceDiagram
-    participant C1 as 客户端 1<br/>(短 Prompt 100 tokens)
-    participant LB as K8s Service<br/>Round-robin
-    participant P1 as Pod 1<br/>(队列: 5 个长请求)
-    participant P2 as Pod 2<br/>(队列: 空)
+flowchart LR
+    C1["客户端 1<br/>(短 Prompt 100 tokens)"] -->|请求 A<br/>预期 500ms| LB
+    LB["K8s Service<br/>Round-robin"] -->|分配到 Pod 1| P1
+    P1["Pod 1<br/>队列: 5 个长请求"] -->|排队等待 25 秒| P1
+    P1 -.->|响应超时| C1
     
-    C1->>LB: 请求 A (预期 500ms)
-    LB->>P1: 分配到 Pod 1
-    Note over P1: 排队等待 5 个长请求<br/>实际耗时: 25 秒!
-    P1-->>C1: 响应 (超时)
+    LB -.->|未使用| P2["Pod 2<br/>队列: 空"]
     
-    Note over P2: Pod 2 空闲,但未被使用
+    note["❌ 问题: Service 不知 Pod 1 已过载<br/>✅ Pod 2 空闲但未被使用"] -.-> P1
+    note -.-> P2
     
-    style P1 fill:#ffebee
-    style P2 fill:#e8f5e9
+    style P1 fill:#ffebee,stroke:#c62828
+    style P2 fill:#e8f5e9,stroke:#2e7d32
+    style LB fill:#fff3e0
+    style note fill:#fff9c4
 ```
 
 **问题分析**:
