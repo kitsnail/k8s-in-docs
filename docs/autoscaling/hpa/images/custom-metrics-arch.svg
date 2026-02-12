@@ -1,0 +1,147 @@
+<svg viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e9ecef;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-app" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bbdefb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-prom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a5d6a7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-adapter" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb74d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-hpa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e1f5fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81d4fa;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4caf50"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#ff9800"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1976d2"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="450" fill="url(#grad-bg)" rx="10"/>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="bold" fill="#333">
+    自定义指标扩容架构
+  </text>
+  <text x="450" y="50" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#666">
+    基于GPU利用率/请求队列长度/推理延迟等业务指标
+  </text>
+  
+  <!-- Application Pods -->
+  <g transform="translate(50, 80)" filter="url(#shadow)">
+    <rect width="180" height="130" rx="10" fill="url(#grad-app)" stroke="#1976d2" stroke-width="2"/>
+    <text x="90" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#1565c0">🤖 推理服务 Pod</text>
+    <text x="90" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#424242">大模型推理服务</text>
+    
+    <rect x="15" y="58" width="150" height="60" rx="5" fill="#fff" stroke="#90caf9" stroke-width="1"/>
+    <text x="90" y="75" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">暴露自定义指标:</text>
+    <text x="90" y="92" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#d32f2f" font-weight="bold">gpu_utilization: 85%</text>
+    <text x="90" y="108" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">inference_latency_p99</text>
+  </g>
+  
+  <!-- Prometheus -->
+  <g transform="translate(280, 80)" filter="url(#shadow)">
+    <rect width="160" height="130" rx="10" fill="url(#grad-prom)" stroke="#388e3c" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#2e7d32">📈 Prometheus</text>
+    <text x="80" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">时序数据库</text>
+    
+    <rect x="15" y="58" width="130" height="60" rx="5" fill="#fff" stroke="#a5d6a7" stroke-width="1"/>
+    <text x="80" y="75" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">存储时序数据:</text>
+    <text x="80" y="92" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">指标历史趋势</text>
+    <text x="80" y="108" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">告警规则</text>
+  </g>
+  
+  <!-- Prometheus Adapter -->
+  <g transform="translate(490, 80)" filter="url(#shadow)">
+    <rect width="160" height="130" rx="10" fill="url(#grad-adapter)" stroke="#ef6c00" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#e65100">🔌 Prometheus</text>
+    <text x="80" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#e65100">Adapter</text>
+    <text x="80" y="60" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#ef6c00">指标适配器</text>
+    
+    <rect x="15" y="70" width="130" height="45" rx="5" fill="#fff" stroke="#ffb74d" stroke-width="1"/>
+    <text x="80" y="87" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">PromQL查询</text>
+    <text x="80" y="104" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">转换Metrics API</text>
+  </g>
+  
+  <!-- HPA Controller -->
+  <g transform="translate(700, 80)" filter="url(#shadow)">
+    <rect width="160" height="130" rx="10" fill="url(#grad-hpa)" stroke="#0288d1" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#01579b">🤖 HPA</text>
+    <text x="80" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#0277bd">控制器</text>
+    
+    <rect x="15" y="58" width="130" height="60" rx="5" fill="#fff" stroke="#81d4fa" stroke-width="1"/>
+    <text x="80" y="75" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">查询自定义指标:</text>
+    <text x="80" y="92" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">custom.metrics.</text>
+    <text x="80" y="108" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">k8s.io</text>
+  </g>
+  
+  <!-- Flow Arrows -->
+  <!-- App to Prometheus -->
+  <path d="M 230 145 L 280 145" stroke="#1976d2" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <text x="255" y="140" font-family="system-ui, sans-serif" font-size="8" fill="#1976d2" text-anchor="middle">/metrics</text>
+  
+  <!-- Prometheus to Adapter -->
+  <path d="M 440 145 L 490 145" stroke="#4caf50" stroke-width="2" fill="none" marker-end="url(#arrow-green)"/>
+  <text x="465" y="140" font-family="system-ui, sans-serif" font-size="8" fill="#388e3c" text-anchor="middle">PromQL</text>
+  
+  <!-- Adapter to HPA -->
+  <path d="M 650 145 L 700 145" stroke="#ff9800" stroke-width="2" fill="none" marker-end="url(#arrow-orange)"/>
+  <text x="675" y="140" font-family="system-ui, sans-serif" font-size="8" fill="#ef6c00" text-anchor="middle">Metrics API</text>
+  
+  <!-- HPA Scaling Action -->
+  <path d="M 780 210 L 780 250 L 140 250 L 140 210" stroke="#0288d1" stroke-width="2" fill="none" marker-end="url(#arrow-blue)" stroke-dasharray="5,3"/>
+  <text x="450" y="265" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#1976d2">更新Deployment副本数 (基于GPU指标决策)</text>
+  
+  <!-- Why Section -->
+  <g transform="translate(50, 290)">
+    <rect width="380" height="140" rx="8" fill="#ffebee" stroke="#f44336" stroke-width="1"/>
+    <text x="190" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#c62828">❓ 为什么需要自定义指标?</text>
+    <text x="10" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#333">AI推理服务的真实瓶颈可能不是CPU:</text>
+    <text x="10" y="58" font-family="system-ui, sans-serif" font-size="9" fill="#666">• GPU利用率 (大模型推理主要瓶颈)</text>
+    <text x="10" y="74" font-family="system-ui, sans-serif" font-size="9" fill="#666">• 请求队列长度 (业务指标)</text>
+    <text x="10" y="90" font-family="system-ui, sans-serif" font-size="9" fill="#666">• 推理延迟P99 (SLA指标)</text>
+    <text x="10" y="106" font-family="system-ui, sans-serif" font-size="9" fill="#666">• 并发连接数 (负载均衡器指标)</text>
+    <text x="10" y="125" font-family="system-ui, sans-serif" font-size="9" fill="#d32f2f">💡 类比: 不仅看排队人数,还要看收银速度!</text>
+  </g>
+  
+  <!-- YAML Example -->
+  <g transform="translate(460, 290)">
+    <rect width="390" height="140" rx="8" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1"/>
+    <text x="195" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#333">📝 自定义指标HPA配置示例</text>
+    <rect x="10" y="30" width="370" height="100" rx="4" fill="#263238"/>
+    <text x="20" y="45" font-family="monospace, sans-serif" font-size="8" fill="#ff7043">apiVersion:</text>
+    <text x="100" y="45" font-family="monospace, sans-serif" font-size="8" fill="#aed581">autoscaling/v2</text>
+    <text x="20" y="57" font-family="monospace, sans-serif" font-size="8" fill="#ff7043">kind:</text>
+    <text x="60" y="57" font-family="monospace, sans-serif" font-size="8" fill="#aed581">HorizontalPodAutoscaler</text>
+    <text x="20" y="72" font-family="monospace, sans-serif" font-size="8" fill="#90a4ae"># ... metadata ...</text>
+    <text x="20" y="84" font-family="monospace, sans-serif" font-size="8" fill="#ff7043">metrics:</text>
+    <text x="30" y="96" font-family="monospace, sans-serif" font-size="8" fill="#ff7043">-</text>
+    <text x="45" y="96" font-family="monospace, sans-serif" font-size="8" fill="#aed581">type:</text>
+    <text x="95" y="96" font-family="monospace, sans-serif" font-size="8" fill="#fff">Pods</text>
+    <text x="45" y="108" font-family="monospace, sans-serif" font-size="8" fill="#aed581">pods:</text>
+    <text x="55" y="120" font-family="monospace, sans-serif" font-size="8" fill="#aed581">metric:</text>
+    <text x="105" y="120" font-family="monospace, sans-serif" font-size="8" fill="#fff">name:</text>
+    <text x="155" y="120" font-family="monospace, sans-serif" font-size="8" fill="#81d4fa">gpu_utilization</text>
+  </g>
+</svg>

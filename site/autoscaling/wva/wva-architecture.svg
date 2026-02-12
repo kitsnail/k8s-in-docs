@@ -1,0 +1,540 @@
+<svg viewBox="0 0 1400 950" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="grad-wva" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb74d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-analyzer" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81c784;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-actuator" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e1f5fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4fc3f7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-prometheus" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ba68c8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-hpa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f2f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4db6ac;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-gateway" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fce4ec;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f48fb1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-pod-l40s" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#64b5f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-pod-a100" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff8e1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffd54f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-user" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f7fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4dd0e1;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Arrow markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#ff9800"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f44336"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4caf50"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9c27b0"/>
+    </marker>
+    
+    <!-- Filters -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="950" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="700" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="bold" fill="#333">
+    WVA 基于饱和度的 AI 推理服务智能扩缩容架构
+  </text>
+  <text x="700" y="68" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#666">
+    搬家公司智能调度类比 · Workload Variant Autoscaler
+  </text>
+  
+  <!-- User Layer -->
+  <rect x="30" y="100" width="200" height="280" rx="10" fill="#fff" stroke="#00bcd4" stroke-width="2"/>
+  <text x="130" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#00838f">
+    👤 用户层
+  </text>
+  
+  <g transform="translate(50, 145)" filter="url(#shadow)">
+    <rect width="160" height="90" rx="8" fill="url(#grad-user)" stroke="#00acc1" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#006064">API 请求</text>
+    <text x="80" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#00838f">Token 长度变化</text>
+    <text x="80" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">短: 10 tokens</text>
+    <text x="80" y="82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">长: 5000+ tokens</text>
+  </g>
+  
+  <!-- Metrics Panel -->
+  <g transform="translate(50, 250)">
+    <rect width="160" height="110" rx="8" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+    <text x="80" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#2e7d32">📊 SLO 目标</text>
+    
+    <g transform="translate(10, 35)">
+      <rect width="140" height="25" rx="4" fill="#e8f5e9"/>
+      <text x="70" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2e7d32">TTFT &lt; 200ms</text>
+    </g>
+    
+    <g transform="translate(10, 65)">
+      <rect width="140" height="25" rx="4" fill="#e8f5e9"/>
+      <text x="70" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2e7d32">ITL &lt; 50ms</text>
+    </g>
+    
+    <g transform="translate(10, 95)">
+      <rect width="140" height="25" rx="4" fill="#fff3e0"/>
+      <text x="70" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#e65100">P99 延迟监控</text>
+    </g>
+  </g>
+  
+  <!-- Inference Infrastructure -->
+  <rect x="250" y="100" width="320" height="280" rx="10" fill="#fff5f7" stroke="#e91e63" stroke-width="2"/>
+  <text x="410" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#c2185b">
+    🏗️ 推理基础设施
+  </text>
+  
+  <!-- Inference Gateway -->
+  <g transform="translate(270, 145)" filter="url(#shadow)">
+    <rect width="120" height="70" rx="8" fill="url(#grad-gateway)" stroke="#d81b60" stroke-width="2"/>
+    <text x="60" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#880e4f">Inference</text>
+    <text x="60" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#880e4f">Gateway</text>
+    <text x="60" y="56" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#ad1457">请求路由</text>
+  </g>
+  
+  <!-- Variant L40S -->
+  <g transform="translate(270, 230)" filter="url(#shadow)">
+    <rect width="130" height="130" rx="8" fill="url(#grad-pod-l40s)" stroke="#1976d2" stroke-width="2"/>
+    <text x="65" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0d47a1">vLLM Pod</text>
+    <text x="65" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1976d2">变体-L40S</text>
+    <text x="65" y="58" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#4caf50">💰 $5/h</text>
+    
+    <!-- Metrics -->
+    <g transform="translate(10, 70)">
+      <rect width="110" height="22" rx="3" fill="#fff"/>
+      <text x="55" y="15" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#d32f2f">KV: 75% ⚠️</text>
+    </g>
+    
+    <g transform="translate(10, 98)">
+      <rect width="110" height="22" rx="3" fill="#fff"/>
+      <text x="55" y="15" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#666">Queue: 3</text>
+    </g>
+  </g>
+  
+  <!-- Variant A100 -->
+  <g transform="translate(420, 230)" filter="url(#shadow)">
+    <rect width="130" height="130" rx="8" fill="url(#grad-pod-a100)" stroke="#f57f17" stroke-width="2"/>
+    <text x="65" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#e65100">vLLM Pod</text>
+    <text x="65" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#f57f17">变体-A100</text>
+    <text x="65" y="58" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#f44336">💰 $20/h</text>
+    
+    <!-- Metrics -->
+    <g transform="translate(10, 70)">
+      <rect width="110" height="22" rx="3" fill="#fff"/>
+      <text x="55" y="15" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#d32f2f">KV: 85% 🔥</text>
+    </g>
+    
+    <g transform="translate(10, 98)">
+      <rect width="110" height="22" rx="3" fill="#fff"/>
+      <text x="55" y="15" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#d32f2f">Queue: 6 🔥</text>
+    </g>
+  </g>
+  
+  <!-- Monitoring Layer -->
+  <rect x="590" y="100" width="200" height="280" rx="10" fill="#f5f3f7" stroke="#9c27b0" stroke-width="2"/>
+  <text x="690" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#6a1b9a">
+    📊 监控层
+  </text>
+  
+  <g transform="translate(610, 145)" filter="url(#shadow)">
+    <rect width="160" height="100" rx="8" fill="url(#grad-prometheus)" stroke="#7b1fa2" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#4a148c">Prometheus</text>
+    <text x="80" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7b1fa2">数据枢纽</text>
+    
+    <g transform="translate(10, 60)">
+      <rect width="140" height="30" rx="4" fill="#fff"/>
+      <text x="70" y="12" text-anchor="middle" font-family="monospace, sans-serif" font-size="8" fill="#666">vllm_kv_cache_usage</text>
+      <text x="70" y="24" text-anchor="middle" font-family="monospace, sans-serif" font-size="8" fill="#666">num_requests_waiting</text>
+    </g>
+  </g>
+  
+  <!-- Metrics Flow Indicators -->
+  <g transform="translate(610, 265)">
+    <rect width="160" height="95" rx="8" fill="#fff" stroke="#ce93d8" stroke-width="1"/>
+    <text x="80" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#7b1fa2">指标流向</text>
+    
+    <text x="80" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">① Pod 上报指标</text>
+    <text x="80" y="58" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">② WVA 查询分析</text>
+    <text x="80" y="76" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">③ HPA 获取目标</text>
+  </g>
+  
+  <!-- Control Plane -->
+  <rect x="810" y="100" width="560" height="280" rx="10" fill="#fff8e1" stroke="#ff8f00" stroke-width="2"/>
+  <text x="1090" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#e65100">
+    🎛️ WVA 控制平面 (核心决策层)
+  </text>
+  <text x="1090" y="145" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#888">
+    类比: 搬家公司调度中心
+  </text>
+  
+  <!-- WVA Controller -->
+  <g transform="translate(830, 165)" filter="url(#shadow)">
+    <rect width="160" height="110" rx="8" fill="url(#grad-wva)" stroke="#ef6c00" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#e65100">WVA Controller</text>
+    <text x="80" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#ef6c00">调度中心 / 决策大脑</text>
+    
+    <g transform="translate(10, 60)">
+      <rect width="140" height="40" rx="4" fill="#fff"/>
+      <text x="70" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">周期性 Reconcile</text>
+      <text x="70" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#e65100" font-weight="bold">每 60s 分析一次</text>
+    </g>
+  </g>
+  
+  <!-- Saturation Analyzer -->
+  <g transform="translate(1010, 165)" filter="url(#shadow)">
+    <rect width="160" height="110" rx="8" fill="url(#grad-analyzer)" stroke="#388e3c" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#2e7d32">Saturation</text>
+    <text x="80" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#2e7d32">Analyzer</text>
+    <text x="80" y="60" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">容量专家</text>
+    
+    <g transform="translate(10, 72)">
+      <rect width="140" height="28" rx="4" fill="#c8e6c9"/>
+      <text x="70" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2e7d32">识别非饱和副本</text>
+    </g>
+  </g>
+  
+  <!-- Metrics Actuator -->
+  <g transform="translate(1190, 165)" filter="url(#shadow)">
+    <rect width="160" height="110" rx="8" fill="url(#grad-actuator)" stroke="#0288d1" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#01579b">Metrics</text>
+    <text x="80" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#01579b">Actuator</text>
+    <text x="80" y="60" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#0288d1">信号发射器</text>
+    
+    <g transform="translate(10, 72)">
+      <rect width="140" height="28" rx="4" fill="#e1f5fe"/>
+      <text x="70" y="18" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#0277bd">wva_desired_replicas</text>
+    </g>
+  </g>
+  
+  <!-- ConfigMap -->
+  <g transform="translate(910, 295)" filter="url(#shadow)">
+    <rect width="200" height="70" rx="8" fill="#fff9c4" stroke="#fbc02d" stroke-width="2"/>
+    <text x="100" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f57f17">ConfigMap</text>
+    <text x="100" y="42" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#666">kvCacheThreshold: 0.80</text>
+    <text x="100" y="58" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#666">queueLengthThreshold: 5</text>
+  </g>
+  
+  <!-- Watch indicator -->
+  <g transform="translate(1125, 310)">
+    <rect width="100" height="40" rx="5" fill="#e8f5e9" stroke="#4caf50" stroke-width="1"/>
+    <text x="50" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2e7d32">🔥 Watch 机制</text>
+    <text x="50" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#388e3c">配置热更新</text>
+  </g>
+  
+  <!-- Scaling Execution -->
+  <rect x="30" y="410" width="1340" height="280" rx="10" fill="#f0f7ff" stroke="#42a5f5" stroke-width="2"/>
+  <text x="700" y="440" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#1565c0">
+    ⚖️ 扩缩容执行层
+  </text>
+  
+  <!-- HPA/KEDA -->
+  <g transform="translate(60, 465)" filter="url(#shadow)">
+    <rect width="180" height="140" rx="8" fill="url(#grad-hpa)" stroke="#00796b" stroke-width="2"/>
+    <text x="90" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#004d40">HPA / KEDA</text>
+    <text x="90" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#00796b">执行者 / 人事部</text>
+    
+    <g transform="translate(15, 65)">
+      <rect width="150" height="30" rx="4" fill="#fff"/>
+      <text x="75" y="12" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">读取 wva_desired_replicas</text>
+      <text x="75" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#00796b" font-weight="bold">目标值 = 1 (WVA已计算)</text>
+    </g>
+    
+    <g transform="translate(15, 103)">
+      <rect width="150" height="25" rx="4" fill="#e0f2f1"/>
+      <text x="75" y="17" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#00796b">稳定窗口: 扩180s/缩300s</text>
+    </g>
+  </g>
+  
+  <!-- Formula Panel -->
+  <g transform="translate(260, 465)">
+    <rect width="400" height="200" rx="8" fill="#fff" stroke="#ff9800" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#e65100">🧮 饱和度分析算法</text>
+    
+    <rect x="15" y="40" width="370" height="45" rx="5" fill="#fff8e1"/>
+    <text x="200" y="58" text-anchor="middle" font-family="monospace, sans-serif" font-size="10" fill="#333">avg_spare_kv = (0.05 + 0.20) / 2 = 0.125</text>
+    <text x="200" y="75" text-anchor="middle" font-family="monospace, sans-serif" font-size="10" fill="#333">avg_spare_queue = (2 + 3) / 2 = 2.5</text>
+    
+    <g transform="translate(15, 95)">
+      <rect width="180" height="45" rx="5" fill="#ffebee"/>
+      <text x="90" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#c62828">当前状态: 饱和 ⚠️</text>
+      <text x="90" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">2.5 &lt; 3 (触发扩容)</text>
+    </g>
+    
+    <g transform="translate(205, 95)">
+      <rect width="180" height="45" rx="5" fill="#e8f5e9"/>
+      <text x="90" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2e7d32">扩容决策 ✅</text>
+      <text x="90" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">选择最便宜变体</text>
+    </g>
+    
+    <g transform="translate(15, 150)">
+      <rect width="370" height="40" rx="5" fill="#e3f2fd"/>
+      <text x="185" y="17" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#1565c0">成本优化策略</text>
+      <text x="185" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#333">扩容选 <tspan fill="#1976d2" font-weight="bold">L40S ($5/h)</tspan> | 缩容选 <tspan fill="#f57f17" font-weight="bold">A100 ($20/h)</tspan></text>
+    </g>
+  </g>
+  
+  <!-- Variant Comparison -->
+  <g transform="translate(680, 465)">
+    <rect width="320" height="200" rx="8" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+    <text x="160" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#2e7d32">📊 变体对比 &amp; 决策</text>
+    
+    <!-- L40S Row -->
+    <g transform="translate(15, 45)">
+      <rect width="290" height="45" rx="5" fill="#e3f2fd"/>
+      <text x="50" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#1565c0">L40S</text>
+      <text x="50" y="35" font-family="system-ui, sans-serif" font-size="9" fill="#666">当前: 2 副本 | 就绪: 2</text>
+      <text x="200" y="20" font-family="system-ui, sans-serif" font-size="11" fill="#4caf50" font-weight="bold">💰 $5/h</text>
+      <text x="200" y="36" font-family="system-ui, sans-serif" font-size="9" fill="#4caf50">✓ 扩容首选</text>
+    </g>
+    
+    <!-- A100 Row -->
+    <g transform="translate(15, 98)">
+      <rect width="290" height="45" rx="5" fill="#fff8e1"/>
+      <text x="50" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#e65100">A100</text>
+      <text x="50" y="35" font-family="system-ui, sans-serif" font-size="9" fill="#666">当前: 3 副本 | 就绪: 2</text>
+      <text x="200" y="20" font-family="system-ui, sans-serif" font-size="11" fill="#f44336" font-weight="bold">💰 $20/h</text>
+      <text x="200" y="36" font-family="system-ui, sans-serif" font-size="9" fill="#f44336">✓ 缩容首选</text>
+    </g>
+    
+    <!-- Total Cost -->
+    <g transform="translate(15, 151)">
+      <rect width="290" height="38" rx="5" fill="#f3e5f5"/>
+      <text x="80" y="24" font-family="system-ui, sans-serif" font-size="11" fill="#6a1b9a">当前成本: $70/h</text>
+      <text x="220" y="24" font-family="system-ui, sans-serif" font-size="11" fill="#4caf50" font-weight="bold">→ $75/h (+1 L40S)</text>
+    </g>
+  </g>
+  
+  <!-- Scaling Status -->
+  <g transform="translate(1020, 465)">
+    <rect width="330" height="200" rx="8" fill="#fff" stroke="#9c27b0" stroke-width="2"/>
+    <text x="165" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#6a1b9a">📈 扩缩容状态</text>
+    
+    <g transform="translate(15, 45)">
+      <rect width="145" height="50" rx="5" fill="#e8f5e9"/>
+      <text x="72" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">当前副本数</text>
+      <text x="72" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#2e7d32">5</text>
+    </g>
+    
+    <g transform="translate(170, 45)">
+      <rect width="145" height="50" rx="5" fill="#fff3e0"/>
+      <text x="72" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">期望副本数</text>
+      <text x="72" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#e65100">6</text>
+    </g>
+    
+    <g transform="translate(15, 105)">
+      <rect width="300" height="75" rx="5" fill="#f5f5f5"/>
+      <text x="150" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#333">🔥 扩容执行中...</text>
+      
+      <text x="20" y="40" font-family="system-ui, sans-serif" font-size="9" fill="#666">① L40S: 2 → 3 (+1)</text>
+      <text x="20" y="58" font-family="system-ui, sans-serif" font-size="9" fill="#666">② A100: 3 (Pending: 1)</text>
+      
+      <circle cx="270" cy="45" r="8" fill="#ff9800">
+        <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+  
+  <!-- Bottom Panel: Key Features -->
+  <rect x="30" y="710" width="1340" height="220" rx="10" fill="#fff" stroke="#ddd" stroke-width="2"/>
+  <text x="700" y="740" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#333">
+    🎯 WVA 三大核心能力
+  </text>
+  
+  <!-- Feature 1: Saturation-Aware -->
+  <g transform="translate(60, 765)">
+    <rect width="400" height="150" rx="8" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#e65100">🎯 饱和度感知</text>
+    <text x="200" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">Saturation-Aware Scaling</text>
+    
+    <g transform="translate(15, 65)">
+      <rect width="370" height="35" rx="4" fill="#fff"/>
+      <text x="185" y="14" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">基于 KV Cache + 请求队列长度</text>
+      <text x="185" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#e65100">提前预测容量耗尽，避免请求排队</text>
+    </g>
+    
+    <g transform="translate(15, 108)">
+      <rect width="180" height="30" rx="4" fill="#ffebee"/>
+      <text x="90" y="20" text-anchor="middle" font-family="monospace, sans-serif" font-size="10" fill="#c62828">KV &gt; 80% 触发</text>
+    </g>
+    
+    <g transform="translate(205, 108)">
+      <rect width="180" height="30" rx="4" fill="#ffebee"/>
+      <text x="90" y="20" text-anchor="middle" font-family="monospace, sans-serif" font-size="10" fill="#c62828">Queue &gt; 5 触发</text>
+    </g>
+  </g>
+  
+  <!-- Feature 2: Cost Optimization -->
+  <g transform="translate(490, 765)">
+    <rect width="400" height="150" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#2e7d32">💰 成本优化</text>
+    <text x="200" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">Cost-Optimized Variant Selection</text>
+    
+    <g transform="translate(15, 65)">
+      <rect width="370" height="35" rx="4" fill="#fff"/>
+      <text x="185" y="14" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">多变体部署 (L40S / A100 / H100)</text>
+      <text x="185" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2e7d32">扩容选最便宜，缩容选最贵</text>
+    </g>
+    
+    <g transform="translate(15, 108)">
+      <rect width="180" height="30" rx="4" fill="#c8e6c9"/>
+      <text x="90" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2e7d32">💵 节省 40-60% 成本</text>
+    </g>
+    
+    <g transform="translate(205, 108)">
+      <rect width="180" height="30" rx="4" fill="#e3f2fd"/>
+      <text x="90" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#1565c0">🚫 级联扩容防护</text>
+    </g>
+  </g>
+  
+  <!-- Feature 3: SLO Guarantee -->
+  <g transform="translate(920, 765)">
+    <rect width="420" height="150" rx="8" fill="#e1f5fe" stroke="#2196f3" stroke-width="2"/>
+    <text x="210" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#1565c0">⚡ SLO 保障</text>
+    <text x="210" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">SLO-Driven Autoscaling</text>
+    
+    <g transform="translate(15, 65)">
+      <rect width="390" height="35" rx="4" fill="#fff"/>
+      <text x="195" y="14" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">以业务指标 (TTFT / ITL) 为目标</text>
+      <text x="195" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#1565c0">非底层资源指标，保障用户体验</text>
+    </g>
+    
+    <g transform="translate(15, 108)">
+      <rect width="120" height="30" rx="4" fill="#e3f2fd"/>
+      <text x="60" y="20" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#1565c0">TTFT &lt; 200ms</text>
+    </g>
+    
+    <g transform="translate(145, 108)">
+      <rect width="120" height="30" rx="4" fill="#e3f2fd"/>
+      <text x="60" y="20" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#1565c0">ITL &lt; 50ms</text>
+    </g>
+    
+    <g transform="translate(275, 108)">
+      <rect width="130" height="30" rx="4" fill="#fff3e0"/>
+      <text x="65" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#e65100">ConfigMap 热更新</text>
+    </g>
+  </g>
+  
+  <!-- Flow Arrows with Animation -->
+  <!-- User to Gateway -->
+  <g>
+    <path d="M 230 220 L 260 220" stroke="#00bcd4" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="8,4">
+      <animate attributeName="stroke-dashoffset" values="0;-12" dur="0.6s" repeatCount="indefinite"/>
+    </path>
+    <text x="245" y="210" font-family="system-ui, sans-serif" font-size="9" fill="#00838f">推理请求</text>
+  </g>
+  
+  <!-- Gateway to Pods -->
+  <g>
+    <path d="M 330 215 L 360 215" stroke="#e91e63" stroke-width="2" fill="none" marker-end="url(#arrow-red)"/>
+    <path d="M 360 215 L 360 280 L 400 280" stroke="#e91e63" stroke-width="2" fill="none"/>
+    <path d="M 360 280 L 530 280" stroke="#e91e63" stroke-width="2" fill="none" marker-end="url(#arrow-red)"/>
+  </g>
+  
+  <!-- Pods to Prometheus -->
+  <g>
+    <path d="M 485 360 L 485 380 L 650 380" stroke="#9c27b0" stroke-width="2" fill="none" marker-end="url(#arrow-purple)" stroke-dasharray="6,3">
+      <animate attributeName="stroke-dashoffset" values="0;-9" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <text x="540" y="375" font-family="system-ui, sans-serif" font-size="9" fill="#7b1fa2">上报指标</text>
+  </g>
+  
+  <!-- Prometheus to WVA -->
+  <g>
+    <path d="M 790 220 L 830 220" stroke="#ff9800" stroke-width="3" fill="none" marker-end="url(#arrow-orange)" stroke-dasharray="8,4">
+      <animate attributeName="stroke-dashoffset" values="0;-12" dur="0.8s" repeatCount="indefinite"/>
+    </path>
+    <text x="810" y="205" font-family="system-ui, sans-serif" font-size="9" fill="#ef6c00">查询指标 (60s)</text>
+  </g>
+  
+  <!-- WVA to Analyzer -->
+  <g>
+    <path d="M 990 220 L 1010 220" stroke="#4caf50" stroke-width="2" fill="none" marker-end="url(#arrow-green)"/>
+    <text x="1000" y="205" font-family="system-ui, sans-serif" font-size="8" fill="#388e3c">分析容量</text>
+  </g>
+  
+  <!-- Analyzer to Actuator -->
+  <g>
+    <path d="M 1170 220 L 1190 220" stroke="#2196f3" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+    <text x="1180" y="205" font-family="system-ui, sans-serif" font-size="8" fill="#0277bd">发射信号</text>
+  </g>
+  
+  <!-- Actuator to Prometheus -->
+  <g>
+    <path d="M 1190 275 L 1190 320 L 810 320 L 810 245 L 770 245" stroke="#9c27b0" stroke-width="2" fill="none" marker-end="url(#arrow-purple)" stroke-dasharray="10,5">
+      <animate attributeName="stroke-dashoffset" values="0;-15" dur="1.5s" repeatCount="indefinite"/>
+    </path>
+    <text x="980" y="340" font-family="system-ui, sans-serif" font-size="9" fill="#7b1fa2">暴露 /metrics</text>
+  </g>
+  
+  <!-- ConfigMap to WVA -->
+  <g>
+    <path d="M 1010 330 L 1010 305 L 950 305 L 950 275" stroke="#fbc02d" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+    <text x="970" y="320" font-family="system-ui, sans-serif" font-size="8" fill="#f57f17">Watch</text>
+  </g>
+  
+  <!-- Prometheus to HPA -->
+  <g>
+    <path d="M 610 300 L 610 480 L 240 480" stroke="#9c27b0" stroke-width="2" fill="none" marker-end="url(#arrow-purple)" stroke-dasharray="8,4">
+      <animate attributeName="stroke-dashoffset" values="0;-12" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <text x="380" y="465" font-family="system-ui, sans-serif" font-size="9" fill="#7b1fa2">获取 desired_replicas</text>
+  </g>
+  
+  <!-- HPA to Pods -->
+  <g>
+    <path d="M 240 605 L 240 650 L 350 650" stroke="#4caf50" stroke-width="3" fill="none" marker-end="url(#arrow-green)" stroke-dasharray="10,5">
+      <animate attributeName="stroke-dashoffset" values="0;-15" dur="1.2s" repeatCount="indefinite"/>
+    </path>
+    <text x="280" y="645" font-family="system-ui, sans-serif" font-size="9" fill="#388e3c">扩容</text>
+  </g>
+  
+  <!-- Workflow Legend -->
+  <g transform="translate(60, 850)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#555">💡 工作流程:</text>
+    <text x="120" y="0" font-family="system-ui, sans-serif" font-size="10" fill="#666">① Pod 上报 KV Cache/队列指标 → ② WVA 每 60s 查询分析 → ③ 计算剩余容量判断扩缩容</text>
+    <text x="120" y="18" font-family="system-ui, sans-serif" font-size="10" fill="#666">④ 选择最便宜变体扩容 → ⑤ Metrics Actuator 发射 desired_replicas → ⑥ HPA 执行扩缩容</text>
+  </g>
+  
+  <!-- System Status -->
+  <g transform="translate(1180, 100)">
+    <rect width="190" height="70" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+    <text x="95" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#2e7d32">🟢 系统状态</text>
+    <text x="95" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#388e3c">正常运行 | 扩容中</text>
+  </g>
+</svg>

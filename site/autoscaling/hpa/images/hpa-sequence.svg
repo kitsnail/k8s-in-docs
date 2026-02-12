@@ -1,0 +1,189 @@
+<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e9ecef;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-user" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bbdefb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-hpa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e1f5fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81d4fa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-metrics" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb74d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-api" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ce93d8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-deploy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a5d6a7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-pod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f1f8e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c5e1a5;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+    <marker id="arrow-solid" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="600" fill="url(#grad-bg)" rx="10"/>
+  
+  <!-- Title -->
+  <text x="500" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="bold" fill="#333">
+    HPA 控制循环时序流程图
+  </text>
+  <text x="500" y="50" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#666">
+    每15秒执行一次检查循环
+  </text>
+  
+  <!-- Participants -->
+  <g transform="translate(50, 70)">
+    <!-- User/SRE -->
+    <g transform="translate(0, 0)" filter="url(#shadow)">
+      <rect width="100" height="60" rx="8" fill="url(#grad-user)" stroke="#1976d2" stroke-width="2"/>
+      <text x="50" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#1565c0">用户/SRE</text>
+      <text x="50" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#424242">老板</text>
+      <text x="50" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">配置HPA</text>
+    </g>
+    
+    <!-- HPA Controller -->
+    <g transform="translate(180, 0)" filter="url(#shadow)">
+      <rect width="100" height="60" rx="8" fill="url(#grad-hpa)" stroke="#0288d1" stroke-width="2"/>
+      <text x="50" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#01579b">HPA</text>
+      <text x="50" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#0277bd">店长</text>
+      <text x="50" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">控制器</text>
+    </g>
+    
+    <!-- Metrics Server -->
+    <g transform="translate(360, 0)" filter="url(#shadow)">
+      <rect width="100" height="60" rx="8" fill="url(#grad-metrics)" stroke="#ef6c00" stroke-width="2"/>
+      <text x="50" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#e65100">Metrics</text>
+      <text x="50" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#ef6c00">统计员</text>
+      <text x="50" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">指标服务器</text>
+    </g>
+    
+    <!-- API Server -->
+    <g transform="translate(540, 0)" filter="url(#shadow)">
+      <rect width="100" height="60" rx="8" fill="url(#grad-api)" stroke="#7b1fa2" stroke-width="2"/>
+      <text x="50" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#4a148c">API</text>
+      <text x="50" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#6a1b9a">调度系统</text>
+      <text x="50" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">API服务器</text>
+    </g>
+    
+    <!-- Deployment -->
+    <g transform="translate(720, 0)" filter="url(#shadow)">
+      <rect width="100" height="60" rx="8" fill="url(#grad-deploy)" stroke="#388e3c" stroke-width="2"/>
+      <text x="50" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#2e7d32">Deployment</text>
+      <text x="50" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#388e3c">排班表</text>
+      <text x="50" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">部署管理</text>
+    </g>
+    
+    <!-- Pods -->
+    <g transform="translate(890, 0)" filter="url(#shadow)">
+      <rect width="100" height="60" rx="8" fill="url(#grad-pod)" stroke="#689f38" stroke-width="2"/>
+      <text x="50" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#558b2f">Pods</text>
+      <text x="50" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#7cb342">收银台</text>
+      <text x="50" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">运行中</text>
+    </g>
+  </g>
+  
+  <!-- Lifelines -->
+  <line x1="100" y1="130" x2="100" y2="480" stroke="#ddd" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="230" y1="130" x2="230" y2="480" stroke="#0288d1" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="410" y1="130" x2="410" y2="480" stroke="#ef6c00" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="590" y1="130" x2="590" y2="480" stroke="#7b1fa2" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="770" y1="130" x2="770" y2="480" stroke="#388e3c" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="940" y1="130" x2="940" y2="480" stroke="#689f38" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <!-- Sequence Flow -->
+  <!-- 1. User creates HPA -->
+  <path d="M 100 150 L 230 150" stroke="#1976d2" stroke-width="2" fill="none" marker-end="url(#arrow-solid)"/>
+  <rect x="130" y="135" width="70" height="18" rx="3" fill="#e3f2fd" stroke="#1976d2" stroke-width="1"/>
+  <text x="165" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#1565c0">创建HPA对象</text>
+  <text x="165" y="170" text-anchor="middle" font-family="system-ui, sans-serif" font-size="7" fill="#666">target: 50% CPU</text>
+  
+  <!-- Loop Box -->
+  <rect x="140" y="190" width="720" height="240" rx="10" fill="#fff8e1" stroke="#ffc107" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="500" y="208" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f57c00">
+    ⏱️ 循环: 每15秒执行一次
+  </text>
+  
+  <!-- 2. HPA queries Metrics -->
+  <path d="M 230 230 L 410 230" stroke="#0288d1" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <rect x="285" y="215" width="70" height="18" rx="3" fill="#e1f5fe" stroke="#0288d1" stroke-width="1"/>
+  <text x="320" y="228" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#01579b">查询Pod指标</text>
+  
+  <!-- 3. Metrics returns data -->
+  <path d="M 410 260 L 230 260" stroke="#ef6c00" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <rect x="285" y="245" width="70" height="18" rx="3" fill="#fff3e0" stroke="#ef6c00" stroke-width="1"/>
+  <text x="320" y="258" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#e65100">返回CPU: 80%</text>
+  
+  <!-- 4. HPA calculates -->
+  <rect x="190" y="285" width="80" height="35" rx="4" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1"/>
+  <text x="230" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#4a148c">计算期望副本数</text>
+  <text x="230" y="315" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333" font-weight="bold">3 → 5</text>
+  
+  <!-- Alt Box - Scale needed -->
+  <rect x="260" y="330" width="450" height="85" rx="5" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+  <text x="280" y="348" font-family="system-ui, sans-serif" font-size="9" fill="#2e7d32" font-weight="bold">[需要扩缩容]</text>
+  
+  <!-- 5. HPA updates Deployment via API -->
+  <path d="M 230 365 L 590 365" stroke="#0288d1" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <rect x="375" y="350" width="70" height="18" rx="3" fill="#e1f5fe" stroke="#0288d1" stroke-width="1"/>
+  <text x="410" y="363" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#01579b">更新replicas=5</text>
+  
+  <!-- 6. API applies to Deployment -->
+  <path d="M 590 390 L 770 390" stroke="#7b1fa2" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <rect x="645" y="375" width="70" height="18" rx="3" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1"/>
+  <text x="680" y="388" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#4a148c">应用变更</text>
+  
+  <!-- 7. Deployment creates Pods -->
+  <path d="M 770 415 L 940 415" stroke="#388e3c" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <rect x="820" y="400" width="70" height="18" rx="3" fill="#e8f5e9" stroke="#388e3c" stroke-width="1"/>
+  <text x="855" y="413" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#2e7d32">创建2个新Pod</text>
+  
+  <!-- 8. New Pods expose metrics -->
+  <path d="M 940 440 Q 800 440 800 460 Q 800 480 410 480" stroke="#689f38" stroke-width="2" fill="none" marker-end="url(#arrow)" stroke-dasharray="3,3"/>
+  <text x="700" y="465" font-family="system-ui, sans-serif" font-size="8" fill="#689f38">新Pod开始暴露指标</text>
+  
+  <!-- Else Box -->
+  <rect x="730" y="210" width="120" height="40" rx="5" fill="#fff3e0" stroke="#ff9800" stroke-width="1"/>
+  <text x="790" y="228" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#e65100" font-weight="bold">[副本数已达标]</text>
+  <text x="790" y="242" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">无操作,继续监控</text>
+  
+  <!-- Arrow to else -->
+  <path d="M 230 320 L 350 320 L 350 230 L 730 230" stroke="#999" stroke-width="1" fill="none" stroke-dasharray="3,3"/>
+  <text x="500" y="225" font-family="system-ui, sans-serif" font-size="8" fill="#999">否</text>
+  
+  <!-- Timeline Annotations -->
+  <g transform="translate(50, 500)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#333">⏱️ 关键参数:</text>
+    <text x="0" y="20" font-family="system-ui, sans-serif" font-size="9" fill="#666">• 检查间隔: 15秒 (可配置)</text>
+    <text x="200" y="20" font-family="system-ui, sans-serif" font-size="9" fill="#666">• 扩容冷却: 3分钟</text>
+    <text x="380" y="20" font-family="system-ui, sans-serif" font-size="9" fill="#666">• 缩容冷却: 5分钟</text>
+    <text x="560" y="20" font-family="system-ui, sans-serif" font-size="9" fill="#666">• 容忍度: ±10%</text>
+  </g>
+  
+  <!-- Calculation Detail Box -->
+  <g transform="translate(50, 530)">
+    <rect width="900" height="55" rx="6" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+    <text x="450" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#333">计算示例</text>
+    <text x="450" y="38" text-anchor="middle" font-family="monospace, sans-serif" font-size="11" fill="#333">
+      当前副本数: 3 | 实际CPU: 80% | 目标CPU: 50% → 期望副本数 = ceil(3 × 80% / 50%) = ceil(4.8) = 5
+    </text>
+  </g>
+</svg>

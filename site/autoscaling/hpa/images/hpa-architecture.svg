@@ -1,0 +1,344 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="grad-hpa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e1f5fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81d4fa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-metrics" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb74d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-api" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ce93d8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-pod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81c784;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-user" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fce4ec;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f48fb1;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Arrow marker -->
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4caf50"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f44336"/>
+    </marker>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="bold" fill="#333">
+    Kubernetes HPA 架构工作原理
+  </text>
+  <text x="600" y="65" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#666">
+    以 AI 推理服务为例 · 超市收银柜台类比
+  </text>
+  
+  <!-- Control Plane Box -->
+  <rect x="50" y="90" width="350" height="200" rx="10" fill="#f5f5f5" stroke="#ddd" stroke-width="2"/>
+  <text x="225" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#555">
+    🎛️ 控制平面 (Control Plane)
+  </text>
+  
+  <!-- HPA Controller -->
+  <g transform="translate(80, 130)" filter="url(#shadow)">
+    <rect width="140" height="80" rx="8" fill="url(#grad-hpa)" stroke="#0288d1" stroke-width="2"/>
+    <text x="70" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#01579b">HPA Controller</text>
+    <text x="70" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#0277bd">超市店长</text>
+    <text x="70" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">决策中枢</text>
+  </g>
+  
+  <!-- API Server -->
+  <g transform="translate(240, 130)" filter="url(#shadow)">
+    <rect width="140" height="80" rx="8" fill="url(#grad-api)" stroke="#7b1fa2" stroke-width="2"/>
+    <text x="70" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#4a148c">API Server</text>
+    <text x="70" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#6a1b9a">总部调度系统</text>
+    <text x="70" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">协调 Pod 创建</text>
+  </g>
+  
+  <!-- Worker Nodes Box -->
+  <rect x="50" y="320" width="1100" height="450" rx="10" fill="#f9f9f9" stroke="#ddd" stroke-width="2"/>
+  <text x="600" y="345" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#555">
+    🖥️ 工作节点 (Worker Nodes)
+  </text>
+  
+  <!-- Metrics Server -->
+  <g transform="translate(350, 140)" filter="url(#shadow)">
+    <rect width="140" height="80" rx="8" fill="url(#grad-metrics)" stroke="#ef6c00" stroke-width="2"/>
+    <text x="70" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#e65100">Metrics Server</text>
+    <text x="70" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#ef6c00">店员统计员</text>
+    <text x="70" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">采集资源指标</text>
+  </g>
+  
+  <!-- Kubelet Node 1 -->
+  <rect x="80" y="370" width="500" height="140" rx="8" fill="#fff" stroke="#42a5f5" stroke-width="2"/>
+  <text x="330" y="395" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#1976d2">📦 Node 1 - Kubelet</text>
+  
+  <!-- Kubelet Icon -->
+  <g transform="translate(100, 410)">
+    <circle r="25" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+    <text x="0" y="5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">Kubelet</text>
+  </g>
+  
+  <!-- Pods Node 1 -->
+  <g transform="translate(150, 400)">
+    <g class="pod" transform="translate(0, 0)">
+      <rect width="90" height="70" rx="6" fill="url(#grad-pod)" stroke="#4caf50" stroke-width="2"/>
+      <text x="45" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#2e7d32">Pod 1</text>
+      <text x="45" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">推理服务</text>
+      <text x="45" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#d32f2f" font-weight="bold">CPU: 80%</text>
+    </g>
+    <g class="pod" transform="translate(110, 0)">
+      <rect width="90" height="70" rx="6" fill="url(#grad-pod)" stroke="#4caf50" stroke-width="2"/>
+      <text x="45" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#2e7d32">Pod 2</text>
+      <text x="45" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">推理服务</text>
+      <text x="45" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#d32f2f" font-weight="bold">CPU: 85%</text>
+    </g>
+    <g class="pod" transform="translate(220, 0)">
+      <rect width="90" height="70" rx="6" fill="url(#grad-pod)" stroke="#4caf50" stroke-width="2"/>
+      <text x="45" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#2e7d32">Pod 3</text>
+      <text x="45" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">推理服务</text>
+      <text x="45" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#d32f2f" font-weight="bold">CPU: 75%</text>
+    </g>
+    <g class="new-pod" transform="translate(330, 0)" opacity="0">
+      <rect width="90" height="70" rx="6" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" stroke-dasharray="4"/>
+      <text x="45" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#2e7d32">Pod 4</text>
+      <text x="45" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">新建中...</text>
+      <text x="45" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">CPU: 0%</text>
+    </g>
+    <g class="new-pod" transform="translate(440, 0)" opacity="0">
+      <rect width="90" height="70" rx="6" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" stroke-dasharray="4"/>
+      <text x="45" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#2e7d32">Pod 5</text>
+      <text x="45" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">新建中...</text>
+      <text x="45" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">CPU: 0%</text>
+    </g>
+  </g>
+  
+  <!-- Kubelet Node 2 -->
+  <rect x="620" y="370" width="500" height="140" rx="8" fill="#fff" stroke="#42a5f5" stroke-width="2"/>
+  <text x="870" y="395" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#1976d2">📦 Node 2 - Kubelet</text>
+  
+  <!-- Kubelet Icon -->
+  <g transform="translate(640, 410)">
+    <circle r="25" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+    <text x="0" y="5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">Kubelet</text>
+  </g>
+  
+  <!-- User/Traffic -->
+  <g transform="translate(80, 560)" filter="url(#shadow)">
+    <rect width="180" height="100" rx="8" fill="url(#grad-user)" stroke="#e91e63" stroke-width="2"/>
+    <text x="90" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#c2185b">👥 用户请求</text>
+    <text x="90" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#ad1457">流量: 5000 QPS</text>
+    <text x="90" y="70" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#666">AI 推理请求</text>
+    <text x="90" y="85" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#f44336" font-weight="bold">⬆️ 激增中!</text>
+  </g>
+  
+  <!-- Formula Box -->
+  <g transform="translate(300, 540)">
+    <rect width="380" height="140" rx="8" fill="#fff" stroke="#ff9800" stroke-width="2"/>
+    <text x="190" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#e65100">🧮 HPA 计算公式</text>
+    
+    <rect x="15" y="40" width="350" height="35" rx="4" fill="#fff3e0"/>
+    <text x="190" y="62" text-anchor="middle" font-family="monospace, sans-serif" font-size="13" fill="#333">
+      期望副本数 = ceil(3 × (80% / 50%)) = 5
+    </text>
+    
+    <text x="190" y="95" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#666">
+      当前: 3个副本 | 实际CPU: 80% | 目标: 50%
+    </text>
+    <text x="190" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#4caf50" font-weight="bold">
+      ➡️ 需要扩容到 5 个 Pod
+    </text>
+    
+    <!-- Animated Calculation -->
+    <g class="calculation">
+      <circle cx="340" cy="25" r="12" fill="#4caf50" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="340" y="29" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="white" font-weight="bold" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+        ✓
+      </text>
+    </g>
+  </g>
+  
+  <!-- Status Panel -->
+  <g transform="translate(720, 540)">
+    <rect width="400" height="140" rx="8" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#2e7d32">📊 实时状态监控</text>
+    
+    <!-- Status Items -->
+    <g transform="translate(20, 45)">
+      <rect width="170" height="35" rx="4" fill="#e8f5e9"/>
+      <text x="85" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">当前副本数</text>
+      <text x="85" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#2e7d32">
+        3 → <tspan fill="#f44336">5</tspan>
+        <animate attributeName="opacity" values="1;0.5;1" dur="1s" repeatCount="indefinite"/>
+      </text>
+    </g>
+    
+    <g transform="translate(210, 45)">
+      <rect width="170" height="35" rx="4" fill="#fff3e0"/>
+      <text x="85" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">平均 CPU 使用率</text>
+      <text x="85" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#e65100">80%</text>
+    </g>
+    
+    <g transform="translate(20, 90)">
+      <rect width="170" height="35" rx="4" fill="#fce4ec"/>
+      <text x="85" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">扩容冷却时间</text>
+      <text x="85" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#c2185b">180s 剩余</text>
+    </g>
+    
+    <g transform="translate(210, 90)">
+      <rect width="170" height="35" rx="4" fill="#e1f5fe"/>
+      <text x="85" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">检查间隔</text>
+      <text x="85" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#0277bd">每 15 秒</text>
+    </g>
+  </g>
+  
+  <!-- Flow Arrows with Animation -->
+  <!-- User to Pods -->
+  <g>
+    <path d="M 170 560 L 170 520 L 390 520 L 390 470" stroke="#f44336" stroke-width="3" fill="none" marker-end="url(#arrow-red)" stroke-dasharray="8,4">
+      <animate attributeName="stroke-dashoffset" values="0;-12" dur="0.5s" repeatCount="indefinite"/>
+    </path>
+    <text x="250" y="510" font-family="system-ui, sans-serif" font-size="10" fill="#f44336">请求流量</text>
+  </g>
+  
+  <!-- Pods to Kubelet -->
+  <g>
+    <path d="M 195 470 L 195 445 L 125 445 L 125 435" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+    <path d="M 305 470 L 305 445 L 125 445" stroke="#666" stroke-width="2" fill="none"/>
+    <path d="M 415 470 L 415 445 L 125 445" stroke="#666" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Kubelet to Metrics Server -->
+  <g>
+    <path d="M 125 410 L 125 280 L 420 280 L 420 220" stroke="#ff9800" stroke-width="2" fill="none" marker-end="url(#arrow)" stroke-dasharray="6,3">
+      <animate attributeName="stroke-dashoffset" values="0;-9" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <text x="200" y="275" font-family="system-ui, sans-serif" font-size="10" fill="#ef6c00">采集指标</text>
+  </g>
+  
+  <!-- Kubelet Node 2 to Metrics Server -->
+  <g>
+    <path d="M 665 410 L 665 320 L 520 320 L 520 250 L 455 250 L 455 220" stroke="#ff9800" stroke-width="2" fill="none" marker-end="url(#arrow)" stroke-dasharray="6,3">
+      <animate attributeName="stroke-dashoffset" values="0;-9" dur="1.2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Metrics Server to HPA -->
+  <g>
+    <path d="M 420 140 L 240 140 L 240 180 L 220 180" stroke="#2196f3" stroke-width="3" fill="none" marker-end="url(#arrow-green)" stroke-dasharray="8,4">
+      <animate attributeName="stroke-dashoffset" values="0;-12" dur="0.8s" repeatCount="indefinite"/>
+    </path>
+    <text x="300" y="135" font-family="system-ui, sans-serif" font-size="10" fill="#1976d2" font-weight="bold">查询指标</text>
+  </g>
+  
+  <!-- HPA to API Server -->
+  <g>
+    <path d="M 220 170 L 240 170" stroke="#7b1fa2" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+    <text x="230" y="165" font-family="system-ui, sans-serif" font-size="9" fill="#7b1fa2">更新副本数</text>
+  </g>
+  
+  <!-- API Server to Pods -->
+  <g>
+    <path d="M 310 210 L 310 300 L 480 300 L 480 400" stroke="#4caf50" stroke-width="3" fill="none" marker-end="url(#arrow-green)" stroke-dasharray="10,5">
+      <animate attributeName="stroke-dashoffset" values="0;-15" dur="1.5s" repeatCount="indefinite"/>
+    </path>
+    <text x="380" y="295" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c" font-weight="bold">创建新 Pod</text>
+  </g>
+  
+  <!-- Legend -->
+  <g transform="translate(950, 130)">
+    <rect width="200" height="220" rx="8" fill="#fff" stroke="#ddd" stroke-width="1"/>
+    <text x="100" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#333">图例说明</text>
+    
+    <g transform="translate(10, 35)">
+      <rect width="20" height="15" rx="3" fill="url(#grad-hpa)"/>
+      <text x="30" y="12" font-family="system-ui, sans-serif" font-size="10" fill="#666">HPA 控制器</text>
+    </g>
+    
+    <g transform="translate(10, 58)">
+      <rect width="20" height="15" rx="3" fill="url(#grad-metrics)"/>
+      <text x="30" y="12" font-family="system-ui, sans-serif" font-size="10" fill="#666">Metrics Server</text>
+    </g>
+    
+    <g transform="translate(10, 81)">
+      <rect width="20" height="15" rx="3" fill="url(#grad-api)"/>
+      <text x="30" y="12" font-family="system-ui, sans-serif" font-size="10" fill="#666">API Server</text>
+    </g>
+    
+    <g transform="translate(10, 104)">
+      <rect width="20" height="15" rx="3" fill="url(#grad-pod)"/>
+      <text x="30" y="12" font-family="system-ui, sans-serif" font-size="10" fill="#666">Pod (推理服务)</text>
+    </g>
+    
+    <g transform="translate(10, 127)">
+      <line x1="0" y1="7" x2="25" y2="7" stroke="#f44336" stroke-width="2" marker-end="url(#arrow-red)"/>
+      <text x="35" y="12" font-family="system-ui, sans-serif" font-size="10" fill="#666">用户请求</text>
+    </g>
+    
+    <g transform="translate(10, 148)">
+      <line x1="0" y1="7" x2="25" y2="7" stroke="#ff9800" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="35" y="12" font-family="system-ui, sans-serif" font-size="10" fill="#666">指标数据</text>
+    </g>
+    
+    <g transform="translate(10, 169)">
+      <line x1="0" y1="7" x2="25" y2="7" stroke="#2196f3" stroke-width="2" marker-end="url(#arrow-green)"/>
+      <text x="35" y="12" font-family="system-ui, sans-serif" font-size="10" fill="#666">控制指令</text>
+    </g>
+    
+    <g transform="translate(10, 190)">
+      <rect width="20" height="15" rx="3" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" stroke-dasharray="3"/>
+      <text x="30" y="12" font-family="system-ui, sans-serif" font-size="10" fill="#666">新建 Pod</text>
+    </g>
+  </g>
+  
+  <!-- Annotations -->
+  <g transform="translate(80, 700)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#666" font-weight="bold">💡 工作流程:</text>
+    <text x="0" y="20" font-family="system-ui, sans-serif" font-size="11" fill="#666">1. 用户请求激增 → Pod CPU 使用率上升至 80%</text>
+    <text x="0" y="38" font-family="system-ui, sans-serif" font-size="11" fill="#666">2. Kubelet 采集指标 → Metrics Server 聚合计算</text>
+    <text x="0" y="56" font-family="system-ui, sans-serif" font-size="11" fill="#666">3. HPA 每 15s 查询 → 计算期望副本数 = 5</text>
+    <text x="0" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#666">4. 通过 API Server 创建 2 个新 Pod → CPU 降至目标值</text>
+  </g>
+  
+  <!-- Status badge -->
+  <g transform="translate(950, 370)">
+    <rect width="200" height="60" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+    <text x="100" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#2e7d32">🟢 系统状态: 正常</text>
+    <text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#388e3c">扩容执行中...</text>
+  </g>
+  
+  <!-- Animate new pods appearing -->
+  <animate href=".new-pod" attributeName="opacity" values="0;0;0;1;1" keyTimes="0;0.5;0.7;0.9;1" dur="4s" repeatCount="indefinite"/>
+  
+  <!-- CPU percentage pulsing -->
+  <animate href=".pod text" attributeName="fill" values="#d32f2f;#ff5722;#d32f2f" dur="1s" repeatCount="indefinite"/>
+</svg>

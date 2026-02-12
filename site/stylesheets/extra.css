@@ -1,0 +1,116 @@
+/* Kubernetes 生态技术文档库 - 自定义样式 */
+
+/* 自定义主色调 */
+:root {
+  --md-primary-fg-color: #3f51b5;
+  --md-primary-fg-color--light: #7986cb;
+  --md-primary-fg-color--dark: #303f9f;
+  --md-accent-fg-color: #ff6d00;
+}
+
+/* 暗色模式调整 */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #5c6bc0;
+  --md-primary-fg-color--light: #8e99a4;
+  --md-primary-fg-color--dark: #3949ab;
+  --md-accent-fg-color: #ff9100;
+}
+
+/* 代码块样式优化 */
+.md-typeset code {
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+}
+
+.md-typeset pre > code {
+  border-radius: 6px;
+}
+
+/* 表格样式优化 */
+.md-typeset table:not([class]) {
+  font-size: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--md-primary-fg-color);
+  color: white;
+  font-weight: 600;
+}
+
+.md-typeset table:not([class]) tr:hover {
+  background-color: rgba(63, 81, 181, 0.05);
+}
+
+/* 导航栏样式 */
+.md-nav__link {
+  font-size: 0.75rem;
+}
+
+.md-tabs__link {
+  font-weight: 500;
+}
+
+/* 提示框自定义样式 */
+.md-typeset .admonition {
+  border-radius: 6px;
+}
+
+.md-typeset .admonition-title {
+  font-weight: 600;
+}
+
+/* 内容区域宽度优化 */
+.md-grid {
+  max-width: 1440px;
+}
+
+/* 搜索框样式 */
+.md-search__form {
+  border-radius: 4px;
+}
+
+/* 页脚样式 */
+.md-footer {
+  background-color: var(--md-primary-fg-color--dark);
+}
+
+/* 标签样式 */
+.md-tag {
+  font-size: 0.7rem;
+  padding: 0.1em 0.5em;
+  border-radius: 3px;
+}
+
+/* 链接样式 */
+.md-typeset a {
+  text-decoration: none;
+  border-bottom: 1px dotted var(--md-accent-fg-color);
+}
+
+.md-typeset a:hover {
+  border-bottom: 1px solid var(--md-accent-fg-color);
+}
+
+/* 代码复制按钮 */
+.md-clipboard {
+  color: var(--md-default-fg-color--lighter);
+  transition: color 0.2s;
+}
+
+.md-clipboard:hover {
+  color: var(--md-accent-fg-color);
+}
+
+/* Mermaid 图表样式 */
+.mermaid {
+  text-align: center;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 76.234375em) {
+  .md-nav--primary .md-nav__title {
+    background-color: var(--md-primary-fg-color);
+    color: white;
+  }
+}

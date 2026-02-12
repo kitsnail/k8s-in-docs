@@ -1,0 +1,512 @@
+<svg viewBox="0 0 1500 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="grad-gateway" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#64b5f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-scheduler" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb74d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-indexer" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ba68c8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-prefill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e1f5fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4fc3f7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-decode" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff8e1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffd54f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-kv-gpu" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81c784;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-kv-cpu" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff9c4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fff176;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-kv-fs" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fce4ec;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f48fb1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-network" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f2f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4db6ac;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-autoscaler" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffebee;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef5350;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-user" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f7fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4dd0e1;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Arrow markers -->
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#ff9800"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f44336"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4caf50"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9c27b0"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2196f3"/>
+    </marker>
+    
+    <!-- Filters -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1500" height="1000" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="750" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="bold" fill="#333">
+    llm-d 分布式大模型推理平台架构
+  </text>
+  <text x="750" y="68" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#666">
+    Kubernetes 原生 · 智能调度 · 分层缓存 · P/D 分离
+  </text>
+  
+  <!-- User Layer -->
+  <rect x="30" y="100" width="160" height="180" rx="10" fill="#fff" stroke="#00bcd4" stroke-width="2"/>
+  <text x="110" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#00838f">
+    👤 用户层
+  </text>
+  
+  <g transform="translate(50, 145)" filter="url(#shadow)">
+    <rect width="120" height="110" rx="8" fill="url(#grad-user)" stroke="#00acc1" stroke-width="2"/>
+    <text x="60" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#006064">客户端</text>
+    <text x="60" y="50" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#00838f">推理请求</text>
+    <text x="60" y="70" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">短: 10 tokens</text>
+    <text x="60" y="85" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">长: 10k tokens</text>
+  </g>
+  
+  <!-- Order Center - Gateway -->
+  <rect x="210" y="100" width="180" height="180" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="300" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#1565c0">
+    🎯 订单中心
+  </text>
+  <text x="300" y="142" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">
+    (Gateway)
+  </text>
+  
+  <g transform="translate(230, 155)" filter="url(#shadow)">
+    <rect width="140" height="100" rx="8" fill="url(#grad-gateway)" stroke="#1976d2" stroke-width="2"/>
+    <text x="70" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#0d47a1">Istio / Envoy</text>
+    <text x="70" y="50" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1976d2">统一入口</text>
+    <text x="70" y="72" text-anchor="middle" font-family="system-ui, sans-serif" size="9" fill="#666">ext-proc 调用</text>
+  </g>
+  
+  <!-- Scheduling Center - Inference Scheduler -->
+  <rect x="410" y="100" width="320" height="250" rx="10" fill="#fff8e1" stroke="#ff8f00" stroke-width="2"/>
+  <text x="570" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#e65100">
+    🧠 调度中心 (Inference Scheduler)
+  </text>
+  <text x="570" y="143" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">
+    智能调度器 - Filter → Score → Select
+  </text>
+  
+  <!-- Endpoint Picker -->
+  <g transform="translate(430, 160)" filter="url(#shadow)">
+    <rect width="280" height="90" rx="8" fill="url(#grad-scheduler)" stroke="#ef6c00" stroke-width="2"/>
+    <text x="140" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#e65100">Endpoint Picker (EPP)</text>
+    <text x="140" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#ef6c00">生产调度员</text>
+    
+    <g transform="translate(20, 60)">
+      <rect width="240" height="22" rx="4" fill="#fff"/>
+      <text x="120" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">Filter → Score → Select</text>
+    </g>
+  </g>
+  
+  <!-- Filter Stage -->
+  <g transform="translate(430, 265)">
+    <rect width="85" height="65" rx="6" fill="#ffebee" stroke="#e57373" stroke-width="1"/>
+    <text x="42" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#c62828">① Filter</text>
+    <text x="42" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">排除不可用</text>
+    <text x="42" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">队列满/OOM</text>
+  </g>
+  
+  <!-- Score Stage -->
+  <g transform="translate(527, 265)">
+    <rect width="85" height="65" rx="6" fill="#fff3e0" stroke="#ffb74d" stroke-width="1"/>
+    <text x="42" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#e65100">② Score</text>
+    <text x="42" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">多维度评分</text>
+    <text x="42" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">缓存/负载/延迟</text>
+  </g>
+  
+  <!-- Select Stage -->
+  <g transform="translate(625, 265)">
+    <rect width="85" height="65" rx="6" fill="#e8f5e9" stroke="#81c784" stroke-width="1"/>
+    <text x="42" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#2e7d32">③ Select</text>
+    <text x="42" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">Top-K 选择</text>
+    <text x="42" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">容错打散</text>
+  </g>
+  
+  <!-- KV Cache Indexer -->
+  <g transform="translate(750, 100)" filter="url(#shadow)">
+    <rect width="180" height="180" rx="8" fill="url(#grad-indexer)" stroke="#7b1fa2" stroke-width="2"/>
+    <text x="90" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#4a148c">KV Cache Indexer</text>
+    <text x="90" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7b1fa2">缓存索引系统</text>
+    
+    <g transform="translate(15, 60)">
+      <rect width="150" height="35" rx="4" fill="#fff"/>
+      <text x="75" y="14" text-anchor="middle" font-family="monospace, sans-serif" font-size="8" fill="#666">Hash(Prompt) → Pod</text>
+      <text x="75" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#7b1fa2">缓存命中率 90%</text>
+    </g>
+    
+    <g transform="translate(15, 105)">
+      <rect width="150" height="60" rx="4" fill="#f3e5f5"/>
+      <text x="75" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#6a1b9a">索引更新 (ZeroMQ)</text>
+      <text x="75" y="38" text-anchor="middle" font-family="monospace, sans-serif" font-size="8" fill="#666">Pod A: Block 0-100</text>
+      <text x="75" y="52" text-anchor="middle" font-family="monospace, sans-serif" font-size="8" fill="#666">Pod B: Block 101-200</text>
+    </g>
+  </g>
+  
+  <!-- Production Workshop - vLLM Pods -->
+  <rect x="30" y="380" width="900" height="280" rx="10" fill="#fffde7" stroke="#fbc02d" stroke-width="2"/>
+  <text x="480" y="405" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#f57f17">
+    🏭 生产车间 (vLLM Pods)
+  </text>
+  
+  <!-- Prefill Pods -->
+  <g transform="translate(60, 425)">
+    <rect width="400" height="110" rx="8" fill="#e1f5fe" stroke="#0288d1" stroke-width="2"/>
+    <text x="200" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#01579b">预处理车间 - Prefill Pods (计算密集)</text>
+    
+    <g transform="translate(15, 35)" filter="url(#shadow)">
+      <rect width="110" height="60" rx="6" fill="url(#grad-prefill)" stroke="#0288d1" stroke-width="2"/>
+      <text x="55" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#01579b">Prefill Pod 1</text>
+      <text x="55" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#0277bd">TP=1, 副本=4</text>
+      <text x="55" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">原料加工</text>
+    </g>
+    
+    <g transform="translate(140, 35)" filter="url(#shadow)">
+      <rect width="110" height="60" rx="6" fill="url(#grad-prefill)" stroke="#0288d1" stroke-width="2"/>
+      <text x="55" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#01579b">Prefill Pod 2</text>
+      <text x="55" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#0277bd">TP=1, 副本=4</text>
+      <text x="55" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">原料加工</text>
+    </g>
+    
+    <g transform="translate(265, 35)" filter="url(#shadow)">
+      <rect width="110" height="60" rx="6" fill="url(#grad-prefill)" stroke="#0288d1" stroke-width="2"/>
+      <text x="55" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#01579b">Prefill Pod N</text>
+      <text x="55" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#0277bd">TP=1, 副本=4</text>
+      <text x="55" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">原料加工</text>
+    </g>
+  </g>
+  
+  <!-- Decode Pods -->
+  <g transform="translate(60, 550)">
+    <rect width="400" height="90" rx="8" fill="#fff8e1" stroke="#ffa000" stroke-width="2"/>
+    <text x="200" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#e65100">精加工产线 - Decode Pods (带宽密集)</text>
+    
+    <g transform="translate(15, 35)" filter="url(#shadow)">
+      <rect width="170" height="40" rx="6" fill="url(#grad-decode)" stroke="#ffa000" stroke-width="2"/>
+      <text x="85" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#e65100">Decode Pod 1</text>
+      <text x="85" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">TP=4, 副本=1 | 精密组装</text>
+    </g>
+    
+    <g transform="translate(200, 35)" filter="url(#shadow)">
+      <rect width="170" height="40" rx="6" fill="url(#grad-decode)" stroke="#ffa000" stroke-width="2"/>
+      <text x="85" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#e65100">Decode Pod N</text>
+      <text x="85" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">TP=4, 副本=1 | 精密组装</text>
+    </g>
+  </g>
+  
+  <!-- Storage System - KV Cache 3-Tier -->
+  <g transform="translate(490, 425)">
+    <rect width="420" height="215" rx="8" fill="#f3e5f5" stroke="#8e24aa" stroke-width="2"/>
+    <text x="210" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#6a1b9a">📦 仓储系统 - KV Cache 分层存储</text>
+    
+    <!-- L1 GPU HBM -->
+    <g transform="translate(15, 40)" filter="url(#shadow)">
+      <rect width="380" height="50" rx="6" fill="url(#grad-kv-gpu)" stroke="#388e3c" stroke-width="2"/>
+      <text x="70" y="18" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#2e7d32">L1: GPU HBM</text>
+      <text x="70" y="35" font-family="system-ui, sans-serif" font-size="9" fill="#388e3c">高速库存 | 热数据 | 毫秒级访问</text>
+      <text x="280" y="25" font-family="monospace, sans-serif" font-size="10" fill="#d32f2f">利用率: 85% 🔥</text>
+    </g>
+    
+    <!-- L2 CPU DRAM -->
+    <g transform="translate(15, 100)" filter="url(#shadow)">
+      <rect width="380" height="50" rx="6" fill="url(#grad-kv-cpu)" stroke="#f9a825" stroke-width="2"/>
+      <text x="70" y="18" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#f57f17">L2: CPU DRAM</text>
+      <text x="70" y="35" font-family="system-ui, sans-serif" font-size="9" fill="#ff8f00">中转仓 | 温数据 | 微秒级访问</text>
+      <text x="280" y="25" font-family="monospace, sans-serif" font-size="10" fill="#388e3c">溢出/预热</text>
+    </g>
+    
+    <!-- L3 Filesystem -->
+    <g transform="translate(15, 160)" filter="url(#shadow)">
+      <rect width="380" height="40" rx="6" fill="url(#grad-kv-fs)" stroke="#c2185b" stroke-width="2"/>
+      <text x="70" y="18" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#880e4f">L3: 文件系统</text>
+      <text x="70" y="33" font-family="system-ui, sans-serif" font-size="9" fill="#ad1457">大型仓库 | 冷数据 | 异步加载</text>
+    </g>
+  </g>
+  
+  <!-- Logistics Network -->
+  <rect x="960" y="100" width="220" height="180" rx="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+  <text x="1070" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#2e7d32">
+    🚚 物流网络
+  </text>
+  <text x="1070" y="142" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">
+    (NIXL/UCCL)
+  </text>
+  
+  <g transform="translate(980, 155)" filter="url(#shadow)">
+    <rect width="180" height="110" rx="8" fill="url(#grad-network)" stroke="#00796b" stroke-width="2"/>
+    <text x="90" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#004d40">NIXL / UCCL</text>
+    <text x="90" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#00796b">专线运输</text>
+    
+    <g transform="translate(10, 60)">
+      <rect width="160" height="18" rx="3" fill="#fff"/>
+      <text x="80" y="12" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">RDMA Write (零拷贝)</text>
+    </g>
+    
+    <g transform="translate(10, 83)">
+      <rect width="160" height="18" rx="3" fill="#fff"/>
+      <text x="80" y="12" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">主机端拥塞控制</text>
+    </g>
+    
+    <text x="90" y="108" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2e7d32" font-weight="bold">传输: &lt;500ms</text>
+  </g>
+  
+  <!-- Autoscaler -->
+  <rect x="1200" y="100" width="270" height="180" rx="10" fill="#ffebee" stroke="#e53935" stroke-width="2"/>
+  <text x="1335" y="125" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#c62828">
+    📊 用工调度 (Autoscaler)
+  </text>
+  
+  <g transform="translate(1220, 145)" filter="url(#shadow)">
+    <rect width="230" height="120" rx="8" fill="url(#grad-autoscaler)" stroke="#d32f2f" stroke-width="2"/>
+    <text x="115" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#b71c1c">WVA 弹性伸缩</text>
+    <text x="115" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#d32f2f">饱和度监控</text>
+    
+    <g transform="translate(10, 60)">
+      <rect width="210" height="45" rx="4" fill="#fff"/>
+      <text x="105" y="16" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#666">saturation = KV*0.5 +</text>
+      <text x="105" y="30" text-anchor="middle" font-family="monospace, sans-serif" font-size="9" fill="#666">queue*0.3 + throughput*0.2</text>
+      <text x="105" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#c62828">&gt; 80% 触发扩容</text>
+    </g>
+  </g>
+  
+  <!-- Three Well-Lit Paths -->
+  <rect x="960" y="300" width="510" height="200" rx="10" fill="#fff" stroke="#9e9e9e" stroke-width="2"/>
+  <text x="1215" y="325" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#616161">
+    🛤️ 三条 Well-Lit Paths
+  </text>
+  
+  <g transform="translate(980, 350)">
+    <rect width="150" height="130" rx="6" fill="#e1f5fe" stroke="#0288d1" stroke-width="2"/>
+    <text x="75" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#01579b">路径 1: 智能调度</text>
+    <text x="75" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#0277bd">Inference Scheduling</text>
+    <text x="75" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">适用: 7B-70B</text>
+    <text x="75" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">Prefix 复用 &gt; 50%</text>
+    <text x="75" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#4caf50" font-weight="bold">TTFT 最优</text>
+    <text x="75" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#388e3c">💰 成本最低</text>
+  </g>
+  
+  <g transform="translate(1145, 350)">
+    <rect width="150" height="130" rx="6" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+    <text x="75" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#e65100">路径 2: P/D 分离</text>
+    <text x="75" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#ef6c00">P/D Disaggregation</text>
+    <text x="75" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">适用: 70B-175B</text>
+    <text x="75" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">输入长度 &gt; 10k</text>
+    <text x="75" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#ff9800" font-weight="bold">吞吐 +50%</text>
+    <text x="75" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#e65100">💰💰 需要 RDMA</text>
+  </g>
+  
+  <g transform="translate(1310, 350)">
+    <rect width="140" height="130" rx="6" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+    <text x="70" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#2e7d32">路径 3: Wide-EP</text>
+    <text x="70" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#388e3c">Expert Parallel</text>
+    <text x="70" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">适用: MoE 架构</text>
+    <text x="70" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#666">DeepSeek/Mixtral</text>
+    <text x="70" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#4caf50" font-weight="bold">吞吐最高 50k+</text>
+    <text x="70" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2e7d32">💰💰💰 成本最高</text>
+  </g>
+  
+  <!-- Performance Metrics -->
+  <rect x="30" y="690" width="680" height="280" rx="10" fill="#fff" stroke="#4caf50" stroke-width="2"/>
+  <text x="370" y="720" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#2e7d32">
+    📈 性能收益与核心指标
+  </text>
+  
+  <g transform="translate(60, 745)">
+    <rect width="310" height="100" rx="8" fill="#e8f5e9" stroke="#81c784" stroke-width="1"/>
+    <text x="155" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#2e7d32">智能调度收益</text>
+    
+    <g transform="translate(15, 40)">
+      <rect width="280" height="22" rx="3" fill="#fff"/>
+      <text x="140" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#333">TTFT 降低 99%: 6s → 60ms</text>
+    </g>
+    
+    <g transform="translate(15, 68)">
+      <rect width="280" height="22" rx="3" fill="#fff"/>
+      <text x="140" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#333">吞吐提升 109% (Qwen3-32B)</text>
+    </g>
+  </g>
+  
+  <g transform="translate(390, 745)">
+    <rect width="300" height="100" rx="8" fill="#fff3e0" stroke="#ffb74d" stroke-width="1"/>
+    <text x="150" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#e65100">分层缓存收益</text>
+    
+    <g transform="translate(15, 40)">
+      <rect width="270" height="22" rx="3" fill="#fff"/>
+      <text x="135" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#333">并发从 50 → 250 (13.9x)</text>
+    </g>
+    
+    <g transform="translate(15, 68)">
+      <rect width="270" height="22" rx="3" fill="#fff"/>
+      <text x="135" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#333">保持 185k tok/s (70B)</text>
+    </g>
+  </g>
+  
+  <g transform="translate(60, 860)">
+    <rect width="310" height="90" rx="8" fill="#e3f2fd" stroke="#64b5f6" stroke-width="1"/>
+    <text x="155" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#1565c0">P/D 分离收益</text>
+    <text x="155" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#333">计算与内存解耦优化</text>
+    <text x="155" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1976d2" font-weight="bold">大模型 (120B+) 长上下文</text>
+  </g>
+  
+  <g transform="translate(390, 860)">
+    <rect width="300" height="90" rx="8" fill="#f3e5f5" stroke="#ce93d8" stroke-width="1"/>
+    <text x="150" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#7b1fa2">Wide-EP 收益</text>
+    <text x="150" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#333">DeepSeek-R1 on B200</text>
+    <text x="150" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8e24aa" font-weight="bold">~50k output tok/s</text>
+  </g>
+  
+  <!-- Request Flow -->
+  <rect x="730" y="690" width="740" height="280" rx="10" fill="#fff" stroke="#2196f3" stroke-width="2"/>
+  <text x="1100" y="720" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#1565c0">
+    🔄 请求处理完整流程
+  </text>
+  
+  <g transform="translate(760, 745)">
+    <rect width="680" height="205" rx="8" fill="#e3f2fd" stroke="#64b5f6" stroke-width="1"/>
+    
+    <text x="20" y="25" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">① 客户端发送请求 POST /v1/chat/completions</text>
+    <text x="20" y="45" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">② Gateway (Envoy) 接收并转发到 EPP</text>
+    <text x="20" y="65" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">③ EPP 查询 KV Cache Indexer (Hash→Pod 映射)</text>
+    <text x="20" y="85" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">④ 返回评分: Pod A (缓存 90%), Pod B (队列空闲)</text>
+    <text x="20" y="105" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">⑤ 调度决策: Filter → Score → Select</text>
+    <text x="20" y="125" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">⑥ 选择最优 Pod (Prefill) 处理请求</text>
+    <text x="20" y="145" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">⑦ Prefill 计算 KV Cache → ⑧ NIXL 传输到 Decode</text>
+    <text x="20" y="165" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">⑨ Decode 生成 Token → ⑩ 流式返回客户端</text>
+    <text x="20" y="185" font-family="system-ui, sans-serif" font-size="10" fill="#1565c0">⑪ 更新缓存索引 → ⑫ WVA 监控饱和度</text>
+  </g>
+  
+  <!-- Flow Arrows with Animation -->
+  <!-- User to Gateway -->
+  <g>
+    <path d="M 190 220 L 220 220" stroke="#00bcd4" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="8,4">
+      <animate attributeName="stroke-dashoffset" values="0;-12" dur="0.6s" repeatCount="indefinite"/>
+    </path>
+    <text x="205" y="205" font-family="system-ui, sans-serif" font-size="8" fill="#00838f">① 请求</text>
+  </g>
+  
+  <!-- Gateway to EPP -->
+  <g>
+    <path d="M 390 220 L 420 220" stroke="#2196f3" stroke-width="2" fill="none" marker-end="url(#arrow-blue)"/>
+    <text x="405" y="205" font-family="system-ui, sans-serif" font-size="8" fill="#1976d2">② ext-proc</text>
+  </g>
+  
+  <!-- EPP to Indexer -->
+  <g>
+    <path d="M 710 220 L 750 220" stroke="#9c27b0" stroke-width="2" fill="none" marker-end="url(#arrow-purple)" stroke-dasharray="6,3">
+      <animate attributeName="stroke-dashoffset" values="0;-9" dur="0.8s" repeatCount="indefinite"/>
+    </path>
+    <text x="730" y="205" font-family="system-ui, sans-serif" font-size="8" fill="#7b1fa2">③ 查索引</text>
+  </g>
+  
+  <!-- EPP to Prefill -->
+  <g>
+    <path d="M 570 350 L 570 380 L 150 380 L 150 425" stroke="#ff9800" stroke-width="3" fill="none" marker-end="url(#arrow-orange)" stroke-dasharray="8,4">
+      <animate attributeName="stroke-dashoffset" values="0;-12" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <text x="350" y="375" font-family="system-ui, sans-serif" font-size="9" fill="#ef6c00">⑥ 选择 Pod</text>
+  </g>
+  
+  <!-- Prefill to Storage -->
+  <g>
+    <path d="M 320 480 L 490 480" stroke="#4caf50" stroke-width="2" fill="none" marker-end="url(#arrow-green)"/>
+    <text x="390" y="470" font-family="system-ui, sans-serif" font-size="8" fill="#388e3c">L1 访问</text>
+  </g>
+  
+  <!-- Storage overflow -->
+  <g>
+    <path d="M 700 475 L 750 475 L 750 515 L 700 515" stroke="#f9a825" stroke-width="1" fill="none" stroke-dasharray="4,2"/>
+    <text x="775" y="500" font-family="system-ui, sans-serif" font-size="8" fill="#f57f17">溢出 → L2</text>
+  </g>
+  
+  <!-- Prefill to Network -->
+  <g>
+    <path d="M 320 520 L 600 520 L 600 380 L 960 380 L 960 265 L 970 265" stroke="#00796b" stroke-width="3" fill="none" marker-end="url(#arrow-green)" stroke-dasharray="10,5">
+      <animate attributeName="stroke-dashoffset" values="0;-15" dur="1.2s" repeatCount="indefinite"/>
+    </path>
+    <text x="650" y="510" font-family="system-ui, sans-serif" font-size="9" fill="#00796b">⑧ KV 传输</text>
+  </g>
+  
+  <!-- Network to Decode -->
+  <g>
+    <path d="M 1070 280 L 1070 520 L 480 520 L 480 590 L 230 590" stroke="#00796b" stroke-width="3" fill="none" marker-end="url(#arrow-green)" stroke-dasharray="10,5">
+      <animate attributeName="stroke-dashoffset" values="0;-15" dur="1.5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Decode to Storage -->
+  <g>
+    <path d="M 370 590 L 490 590" stroke="#4caf50" stroke-width="2" fill="none" marker-end="url(#arrow-green)"/>
+  </g>
+  
+  <!-- Decode to Response -->
+  <g>
+    <path d="M 230 550 L 150 550 L 150 340 L 110 340" stroke="#f44336" stroke-width="3" fill="none" marker-end="url(#arrow-red)" stroke-dasharray="8,4">
+      <animate attributeName="stroke-dashoffset" values="0;-12" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <text x="200" y="535" font-family="system-ui, sans-serif" font-size="9" fill="#d32f2f">⑩ 流式返回</text>
+  </g>
+  
+  <!-- Metrics to Autoscaler -->
+  <g>
+    <path d="M 600 480 L 750 480 L 750 250 L 1200 250" stroke="#d32f2f" stroke-width="2" fill="none" marker-end="url(#arrow-red)" stroke-dasharray="6,3" opacity="0.6">
+      <animate attributeName="stroke-dashoffset" values="0;-9" dur="1.5s" repeatCount="indefinite"/>
+    </path>
+    <text x="900" y="270" font-family="system-ui, sans-serif" font-size="8" fill="#c62828">⑫ 饱和度监控</text>
+  </g>
+  
+  <!-- Legend -->
+  <g transform="translate(30, 890)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#555">💡 工厂类比:</text>
+    <text x="100" y="0" font-family="system-ui, sans-serif" font-size="10" fill="#666">Gateway=订单中心, EPP=调度员, Prefill=预处理车间, Decode=精加工产线</text>
+    <text x="100" y="18" font-family="system-ui, sans-serif" font-size="10" fill="#666">KV Cache=仓储系统(高速库存/中转仓/大型仓库), NIXL=物流专线, WVA=弹性用工调度</text>
+  </g>
+  
+  <!-- System Status -->
+  <g transform="translate(1320, 520)">
+    <rect width="150" height="60" rx="8" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+    <text x="75" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#2e7d32">🟢 系统状态</text>
+    <text x="75" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">运行正常</text>
+  </g>
+</svg>

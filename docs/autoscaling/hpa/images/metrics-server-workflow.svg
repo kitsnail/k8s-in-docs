@@ -1,0 +1,187 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e9ecef;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-node1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bbdefb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-node2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e1bee7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-kubelet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a5d6a7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-pod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f1f8e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c5e1a5;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-metrics" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb74d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-hpa" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e1f5fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#81d4fa;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#ef6c00"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1976d2"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="500" fill="url(#grad-bg)" rx="10"/>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="bold" fill="#333">
+    Metrics Server 工作流程
+  </text>
+  <text x="450" y="50" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#666">
+    指标采集 → 聚合计算 → 暴露API
+  </text>
+  
+  <!-- Node 1 -->
+  <rect x="50" y="70" width="380" height="200" rx="10" fill="url(#grad-node1)" stroke="#1976d2" stroke-width="2"/>
+  <text x="240" y="95" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#1565c0">
+    🖥️ Node 1 - 工作节点1
+  </text>
+  
+  <!-- Kubelet Node 1 -->
+  <g transform="translate(80, 115)" filter="url(#shadow)">
+    <rect width="100" height="80" rx="8" fill="url(#grad-kubelet)" stroke="#388e3c" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#2e7d32">Kubelet</text>
+    <text x="50" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">节点代理</text>
+    <text x="50" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">cAdvisor采集</text>
+  </g>
+  
+  <!-- Pods Node 1 -->
+  <g transform="translate(200, 110)">
+    <g transform="translate(0, 0)">
+      <rect width="95" height="70" rx="6" fill="url(#grad-pod)" stroke="#7cb342" stroke-width="2" filter="url(#shadow)"/>
+      <text x="47" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#558b2f">Pod A</text>
+      <text x="47" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">推理服务</text>
+      <text x="47" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#d32f2f" font-weight="bold">CPU: 850m</text>
+    </g>
+    <g transform="translate(110, 0)">
+      <rect width="95" height="70" rx="6" fill="url(#grad-pod)" stroke="#7cb342" stroke-width="2" filter="url(#shadow)"/>
+      <text x="47" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#558b2f">Pod B</text>
+      <text x="47" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">推理服务</text>
+      <text x="47" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#d32f2f" font-weight="bold">CPU: 920m</text>
+    </g>
+  </g>
+  
+  <!-- Node 2 -->
+  <rect x="470" y="70" width="380" height="200" rx="10" fill="url(#grad-node2)" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="660" y="95" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#6a1b9a">
+    🖥️ Node 2 - 工作节点2
+  </text>
+  
+  <!-- Kubelet Node 2 -->
+  <g transform="translate(500, 115)" filter="url(#shadow)">
+    <rect width="100" height="80" rx="8" fill="url(#grad-kubelet)" stroke="#388e3c" stroke-width="2"/>
+    <text x="50" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#2e7d32">Kubelet</text>
+    <text x="50" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#388e3c">节点代理</text>
+    <text x="50" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">cAdvisor采集</text>
+  </g>
+  
+  <!-- Pods Node 2 -->
+  <g transform="translate(620, 110)">
+    <g transform="translate(0, 0)">
+      <rect width="95" height="70" rx="6" fill="url(#grad-pod)" stroke="#7cb342" stroke-width="2" filter="url(#shadow)"/>
+      <text x="47" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#558b2f">Pod C</text>
+      <text x="47" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">推理服务</text>
+      <text x="47" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#d32f2f" font-weight="bold">CPU: 780m</text>
+    </g>
+    <g transform="translate(110, 0)">
+      <rect width="95" height="70" rx="6" fill="url(#grad-pod)" stroke="#7cb342" stroke-width="2" filter="url(#shadow)"/>
+      <text x="47" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#558b2f">Pod D</text>
+      <text x="47" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">推理服务</text>
+      <text x="47" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#d32f2f" font-weight="bold">CPU: 810m</text>
+    </g>
+  </g>
+  
+  <!-- Metrics Server -->
+  <g transform="translate(320, 300)" filter="url(#shadow)">
+    <rect width="260" height="120" rx="10" fill="url(#grad-metrics)" stroke="#ef6c00" stroke-width="2"/>
+    <text x="130" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#e65100">📊 Metrics Server</text>
+    <text x="130" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#ef6c00">店员统计员</text>
+    
+    <rect x="15" y="58" width="230" height="50" rx="5" fill="#fff" stroke="#ffb74d" stroke-width="1"/>
+    <text x="130" y="75" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">通过 Summary API 收集指标</text>
+    <text x="130" y="90" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">聚合计算: (850+920+780+810)/4 = 840m</text>
+    <text x="130" y="105" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">暴露 Metrics API 供查询</text>
+  </g>
+  
+  <!-- HPA Controller -->
+  <g transform="translate(650, 300)" filter="url(#shadow)">
+    <rect width="200" height="120" rx="10" fill="url(#grad-hpa)" stroke="#0288d1" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#01579b">🤖 HPA Controller</text>
+    <text x="100" y="45" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#0277bd">店长决策中枢</text>
+    
+    <rect x="15" y="58" width="170" height="50" rx="5" fill="#fff" stroke="#81d4fa" stroke-width="1"/>
+    <text x="100" y="75" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">查询 Metrics API</text>
+    <text x="100" y="90" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">获取平均CPU: 84%</text>
+    <text x="100" y="105" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">计算期望副本数</text>
+  </g>
+  
+  <!-- Flow Arrows -->
+  <!-- Pod to Kubelet -->
+  <path d="M 247 180 L 247 195 L 180 195 L 180 195" stroke="#7cb342" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 357 180 L 357 205 L 180 205" stroke="#7cb342" stroke-width="2" fill="none"/>
+  
+  <path d="M 667 180 L 667 195 L 600 195 L 600 195" stroke="#7cb342" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 777 180 L 777 205 L 600 205" stroke="#7cb342" stroke-width="2" fill="none"/>
+  
+  <!-- Kubelet to Metrics Server -->
+  <path d="M 130 195 L 130 260 L 350 260 L 350 300" stroke="#ef6c00" stroke-width="2" fill="none" marker-end="url(#arrow-orange)"/>
+  <text x="200" y="285" font-family="system-ui, sans-serif" font-size="9" fill="#ef6c00">Summary API</text>
+  
+  <path d="M 550 195 L 550 260 L 550 260 L 550 300" stroke="#ef6c00" stroke-width="2" fill="none" marker-end="url(#arrow-orange)"/>
+  
+  <!-- Metrics Server internal -->
+  <g transform="translate(350, 340)">
+    <rect width="200" height="35" rx="4" fill="#fff3e0" stroke="#ff9800" stroke-width="1"/>
+    <text x="100" y="14" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#e65100" font-weight="bold">⚙️ 聚合计算</text>
+    <text x="100" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#333">跨所有Pod计算平均CPU使用率</text>
+  </g>
+  
+  <!-- Metrics Server to HPA -->
+  <path d="M 580 360 L 650 360" stroke="#1976d2" stroke-width="2" fill="none" marker-end="url(#arrow-blue)"/>
+  <text x="615" y="355" font-family="system-ui, sans-serif" font-size="9" fill="#1976d2" text-anchor="middle">Metrics API</text>
+  
+  <!-- Info Box -->
+  <g transform="translate(50, 430)">
+    <rect width="800" height="55" rx="6" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+    <text x="400" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#333">
+      📋 Metrics Server 关键特性
+    </text>
+    <text x="20" y="38" font-family="system-ui, sans-serif" font-size="9" fill="#666">
+      • 内存存储: 仅保留最近1-2分钟数据,不持久化历史
+    </text>
+    <text x="20" y="50" font-family="system-ui, sans-serif" font-size="9" fill="#666">
+      • 采集间隔: 默认60秒从Kubelet抓取一次
+    </text>
+    <text x="320" y="38" font-family="system-ui, sans-serif" font-size="9" fill="#666">
+      • 轻量级: ~40MB内存占用,适合生产环境
+    </text>
+    <text x="320" y="50" font-family="system-ui, sans-serif" font-size="9" fill="#666">
+      • 延迟低: 通常1-2秒响应,对扩缩容影响小
+    </text>
+    <text x="600" y="38" font-family="system-ui, sans-serif" font-size="9" fill="#d32f2f">
+      ⚠️ 如需历史趋势分析,请使用 Prometheus + Grafana
+    </text>
+  </g>
+</svg>

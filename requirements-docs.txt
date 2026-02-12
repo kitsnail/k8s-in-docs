@@ -1,0 +1,24 @@
+# Kubernetes 生态技术文档库
+# MkDocs 依赖文件
+# 安装: pip install -r requirements-docs.txt
+
+# MkDocs 核心
+mkdocs>=1.5.0
+
+# Material 主题
+mkdocs-material>=9.5.0
+
+# 常用插件
+mkdocs-minify-plugin>=0.7.0
+mkdocs-git-revision-date-localized-plugin>=1.2.0
+mkdocs-glightbox>=0.3.0
+
+# Markdown 扩展
+pymdown-extensions>=10.0
+
+# 社交卡片生成（可选）
+pillow>=10.0.0
+cairosvg>=2.7.0
+
+# 版本管理（可选）
+mike>=2.0.0

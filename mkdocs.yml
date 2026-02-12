@@ -1,0 +1,263 @@
+# Kubernetes 生态技术文档库 - MkDocs 配置
+# 项目地址: https://github.com/kitsnail/k8s-in-docs
+
+site_name: Kubernetes 生态技术文档库
+site_url: https://kitsnail.github.io/k8s-in-docs/
+site_description: 面向 SRE/DevOps 的 Kubernetes 生态技术深度解析文档集，采用螺旋式递进架构编写
+site_author: SRE Tech Team
+
+# 仓库设置
+repo_name: kitsnail/k8s-in-docs
+repo_url: https://github.com/kitsnail/k8s-in-docs
+edit_uri: edit/main/docs/
+
+# 主题配置
+theme:
+  name: material
+  custom_dir: docs/overrides
+
+  # 调色板 - 支持自动/手动切换明暗模式
+  palette:
+    # 亮色模式
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换到暗色模式
+    # 暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换到亮色模式
+
+  # 字体
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+  # 图标
+  icon:
+    repo: fontawesome/brands/github
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/light-bulb-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+
+  # 功能特性 - 禁用即时导航避免开发环境问题
+  features:
+    # 导航
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    # 目录
+    - toc.follow
+    - toc.integrate
+    # 搜索
+    - search.suggest
+    - search.highlight
+    - search.share
+    # 内容
+    - content.tabs.link
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+    - content.tooltips
+    # 公告
+    - announce.dismiss
+
+# 导航结构
+nav:
+  - 首页: index.md
+  - 自动扩缩容:
+      - 概览: autoscaling/README.md
+      - HPA: autoscaling/hpa/index.md
+      - KEDA: autoscaling/keda/index.md
+      - WVA: autoscaling/wva/index.md
+  - 集群管理:
+      - 概览: cluster-management/README.md
+  - 存储方案:
+      - 概览: storage/README.md
+  - 监控观测:
+      - 概览: monitoring/README.md
+  - 网络方案:
+      - 概览: networking/README.md
+  - 镜像仓库:
+      - 概览: registry/README.md
+  - 安全加固:
+      - 概览: security/README.md
+  - 硬件管理:
+      - 概览: hardware/README.md
+  - AI/ML 平台:
+      - 概览: ai-ml/README.md
+      - llm-d 分布式推理:
+          - 平台概览: ai-ml/llm-d/index.md
+          - 核心组件:
+              - Inference Gateway: ai-ml/llm-d/components/inference-gateway.md
+              - ModelService: ai-ml/llm-d/components/modelservice.md
+              - KV Cache: ai-ml/llm-d/components/kv-cache.md
+              - LMCache:
+                  - 概览: ai-ml/llm-d/components/lmcache/index.md
+                  - 存储架构: ai-ml/llm-d/components/lmcache/components/01-storage-architecture.md
+                  - 分布式预填充: ai-ml/llm-d/components/lmcache/components/02-disaggregated-prefill.md
+                  - 性能优化: ai-ml/llm-d/components/lmcache/components/03-optimization.md
+                  - 运维管理: ai-ml/llm-d/components/lmcache/components/04-management.md
+                  - 生产实践: ai-ml/llm-d/components/lmcache/components/05-production.md
+              - Autoscaler (WVA): ai-ml/llm-d/components/autoscaler.md
+              - Networking: ai-ml/llm-d/components/networking.md
+              - PD Disaggregation: ai-ml/llm-d/components/pd-disaggregation.md
+  - 技术栈:
+      - 概览: stacks/README.md
+      - 监控观测栈: stacks/monitoring-stack.md
+      - AI 推理平台: stacks/ai-inference-platform.md
+  - 元数据:
+      - 技术索引: _meta/index.md
+      - 分类体系: _meta/categories.md
+      - 标签体系: _meta/tags.md
+
+# 插件配置
+plugins:
+  # 内置搜索
+  - search:
+      lang:
+        - zh
+        - en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      pipeline:
+        - stemmer
+        - stopWordFilter
+        - trimmer
+
+  # 代码压缩
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+
+  # Git 修订日期
+  - git-revision-date-localized:
+      type: timeago
+      timezone: Asia/Shanghai
+      locale: zh
+      fallback_to_build_date: true
+      enable_creation_date: true
+
+  # 图片灯箱
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+
+  # 标签支持
+  - tags:
+      tags_file: _meta/tags.md
+
+# Markdown 扩展
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: kitsnail
+      repo: k8s-in-docs
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# 额外 CSS
+extra_css:
+  - stylesheets/extra.css
+
+# 额外 JavaScript
+extra_javascript:
+  - javascripts/extra.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# 额外配置
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kitsnail
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/kitsnail
+  generator: false
+  version:
+    provider: mike
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_KEY
+
+# 版权信息
+copyright: Copyright &copy; 2024-2026 SRE Tech Team
+
+# 严格模式
+strict: false
+
+# 验证配置
+validation:
+  nav:
+    omitted_files: info
+    not_found: warn
+    absolute_links: info
+  links:
+    not_found: warn
+    anchors: warn
