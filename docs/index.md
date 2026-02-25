@@ -21,84 +21,112 @@
 ## 📖 按分类浏览
 
 ### [自动扩缩容](autoscaling/)
-- [HPA](autoscaling/hpa/) - Horizontal Pod Autoscaler
-- [KEDA](autoscaling/keda/) - Event-Driven Autoscaling
-- [WVA](autoscaling/wva/) - Workload Variant Autoscaler
+基于资源指标或事件驱动的 Kubernetes 弹性伸缩方案。
 
-### [集群管理](cluster-management/)
-- Kubespray - 生产级集群部署
-- Kamaji - 多租户控制平面
-- vCluster - 虚拟集群
+- **[HPA](autoscaling/hpa/)** - Kubernetes 原生水平 Pod 扩缩容
+  - 类比: 超市收银柜台的智能开闭台管理
+  - 适用: 计算密集型工作负载,基于 CPU/内存指标
 
-### [存储方案](storage/)
-- etcd - 分布式键值存储
-- Ceph - 统一存储系统
-- JuiceFS - 云原生文件系统
-- GPFS - IBM Spectrum Scale
+- **[KEDA](autoscaling/keda/)** - 事件驱动弹性伸缩
+  - 类比: 餐厅的点单小票机(基于队列深度驱动)
+  - 适用: 支持 60+ 事件源,可缩容到 0
 
-### [监控观测](monitoring/)
-- Metrics Server - 资源指标采集
-- Prometheus - 监控系统
-- Grafana - 数据可视化
-- VictoriaMetrics - 时序数据库
-
-### [网络方案](networking/)
-- Cilium - eBPF CNI
-- Istio - Service Mesh
-- Ingress NGINX - Ingress 控制器
-- MetalLB - 裸金属负载均衡
-
-### [镜像仓库](registry/)
-- Harbor - 企业级镜像仓库
-- Spegel - P2P 镜像分发
-- Registry - Docker Registry
-
-### [安全加固](security/)
-- cert-manager - 证书管理
-
-### [硬件管理](hardware/)
-- NFD - Node Feature Discovery
-- GPU Operator - NVIDIA GPU 管理
+- **[WVA](autoscaling/wva/)** - AI 推理服务饱和度感知扩缩容
+  - 类比: 搬家公司的智能调度(根据物品大小动态调配车辆)
+  - 适用: AI 推理场景,基于 KV Cache 和队列深度
 
 ### [AI/ML 平台](ai-ml/)
-- [llm-d](ai-ml/llm-d/) - 分布式大模型推理平台
-- [LMCache](ai-ml/lmcache/) - LLM 推理 KV Cache 加速层
-- [Inference Gateway](ai-ml/inference-gateway/) - Gateway API 推理扩展
-- [llm-d-modelservice](ai-ml/llm-d-modelservice/) - LLM 推理服务管理 Operator
-- [KV Cache Indexer](ai-ml/llm-inference/kv-cache-indexer/) - KV-Cache 感知调度器
-- [Inference Scheduler](ai-ml/llm-inference/llm-d-inference-scheduler/) - 插件化推理路由引擎
+Kubernetes 上的大模型推理控制平面及相关组件。
+
+#### 🚀 核心平台：[llm-d](ai-ml/llm-d/)
+Kubernetes 原生的分布式大模型推理控制平面,通过智能调度、分层缓存、P/D 分离等能力实现 SOTA 性能。
+
+#### 🧩 核心组件
+
+| 组件 | 文档 | 核心价值 |
+|------|------|----------|
+| **Inference Gateway** | [组件文档](ai-ml/llm-d/components/inference-gateway.md) | 智能路由与调度,请求特征感知的 Filter-Score-Select 算法 |
+| **ModelService** | [组件文档](ai-ml/llm-d/components/modelservice.md) | 声明式推理服务管理,BaseConfig 分层配置 |
+| **KV Cache Management** | [组件文档](ai-ml/llm-d/components/kv-cache.md) | GPU/CPU/文件系统三级缓存管理 |
+| **LMCache** | [完整文档](ai-ml/llm-d/components/lmcache/) | KV Cache 加速层,跨实例共享与多级存储优化 |
+| **Autoscaler (WVA)** | [组件文档](ai-ml/llm-d/components/autoscaler.md) | 饱和度感知弹性伸缩 |
+| **Networking** | [组件文档](ai-ml/llm-d/components/networking.md) | 基于 NIXL/UCCL 的高性能 KV 传输 |
+| **P/D Disaggregation** | [组件文档](ai-ml/llm-d/components/pd-disaggregation.md) | Prefill 与 Decode 阶段解耦架构 |
+
+### [集群管理](cluster-management/)
+Kubernetes 集群部署、管理和多租户解决方案。
+
+- **Kubespray** - 生产级集群部署(Ansible 自动化)
+- **Kamaji** - 多租户控制平面管理
+- **vCluster** - 虚拟 Kubernetes 集群
+
+### [存储方案](storage/)
+持久化存储与分布式文件系统解决方案。
+
+- **etcd** - Kubernetes 控制平面数据存储
+- **Ceph** - 统一存储系统(对象/块/文件)
+- **JuiceFS** - 云原生分布式文件系统
+- **GPFS** - IBM Spectrum Scale 高性能并行文件系统
+
+### [监控观测](monitoring/)
+集群监控、指标采集、可视化和告警体系。
+
+- **Metrics Server** - HPA 指标数据源
+- **Prometheus** - 云原生监控时序数据库
+- **Grafana** - 数据可视化平台
+- **VictoriaMetrics** - 高性能 Prometheus 替代方案
+
+### [网络方案](networking/)
+CNI 插件、Service Mesh 和 Ingress 控制器。
+
+- **Cilium** - eBPF 高性能 CNI
+- **Istio** - 服务网格平台
+- **Ingress NGINX** - Ingress 控制器
+- **MetalLB** - 裸金属负载均衡器
+
+### [镜像仓库](registry/)
+容器镜像存储、分发和加速方案。
+
+- **Harbor** - 企业级镜像仓库(安全扫描/签名)
+- **Spegel** - P2P 镜像分发加速
+- **Registry** - Docker 官方镜像仓库
+
+### [安全加固](security/)
+Kubernetes 安全相关技术。
+
+- **cert-manager** - TLS 证书自动化管理
+
+### [硬件管理](hardware/)
+GPU 等硬件资源管理方案。
+
+- **NFD** - Node Feature Discovery 节点特性发现
+- **GPU Operator** - NVIDIA GPU 资源管理
 
 ---
 
 ## 🎯 按技术栈浏览
 
-### [监控观测栈](stacks/monitoring-stack/)
-Prometheus + Grafana + VictoriaMetrics + Metrics Server
+跨技术组合方案,帮助快速构建完整技术栈。
 
-**适用场景**: 生产级集群监控和可视化
+### [监控观测栈](stacks/monitoring-stack.md)
+**组件**: Prometheus + Grafana + VictoriaMetrics + Metrics Server
 
-### [AI 推理平台](stacks/ai-inference-platform/)
-llm-d + WVA + GPU Operator + JuiceFS + Prometheus
+**适用场景**: 生产级 Kubernetes 集群监控、告警和可视化
 
-**适用场景**: 大模型推理服务部署和成本优化
+---
 
-### [服务网格方案](stacks/service-mesh-stack/)
-Istio + Cilium + cert-manager + Prometheus
+### [AI 推理平台](stacks/ai-inference-platform.md)
+**组件**: llm-d + WVA + GPU Operator + JuiceFS + Prometheus
 
-**适用场景**: 微服务治理、流量管理、安全通信
-
-### [存储方案对比](stacks/storage-comparison/)
-Ceph vs JuiceFS vs GPFS
-
-**适用场景**: 根据业务需求选择合适的存储方案
+**适用场景**: 大模型推理服务部署、自动扩缩容和成本优化
 
 ---
 
 ## 🔍 快速导航
 
-- [**技术索引**](_meta/) - 按字母顺序查找技术
-- [**分类体系**](_meta/categories/) - 了解分类定义
-- [**标签体系**](_meta/tags/) - 按场景、难度、云环境检索
+- [**技术索引**](_meta/index.md) - 按字母顺序查找技术
+- [**分类体系**](_meta/categories.md) - 了解分类定义
+- [**标签体系**](_meta/tags.md) - 按场景、难度、云环境检索
 
 ---
 
@@ -119,7 +147,7 @@ Ceph vs JuiceFS vs GPFS
 1. 在对应分类目录创建技术目录(如 `storage/ceph/`)
 2. 创建 `index.md` 主文档
 3. 更新分类的 `README.md`
-4. 更新根目录 `README.md`
+4. 更新根目录 `index.md`
 
 ### 提交规范
 
